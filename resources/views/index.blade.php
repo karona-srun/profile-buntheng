@@ -19,18 +19,22 @@
     <link href="vendor/venobox/venobox.css" rel="stylesheet">
     <link href="vendor/owl.carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="vendor/aos/aos.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/stylefe.css" rel="stylesheet">
 </head>
 
 <body>
-    <section id="topbar" class="d-none d-lg-block">
+    <section id="topbar" class="">
         <div class="container clearfix">
             <div class="contact-info float-left">
                 <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
                 <i class="icofont-phone"></i> +1 5589 55488 55
             </div>
             <div class="social-links float-right">
-                <a href="#" class="twitter"><i class="icofont-language"></i>English</a>
+                
+                <a href="{{ Session::get('locale') == "kh" ? url('lang/en') : url('lang/kh') }}" class="twitter">
+                <img src="https://www.worldometers.info/img/flags/{{ Session::get('locale') == "kh" ? 'cb' : 'us'}}-flag.gif" alt="" width="30px" height="20px" srcset="">
+                    <i class="icofont-direction-sign"></i> {{ Session::get('locale') == "kh" ? 'Khmer' : 'English'}}
+                </a>
                 <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
                 <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
                 <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
@@ -43,35 +47,23 @@
     <header id="header">
         <div class="container">
             <div class="logo float-left">
-                <h1 class="text-light"><a href="index.html"><span>Mamba</span></a></h1>
+                <h1 class="text-light"><a href="index.html"><span>{{ __('app.appName') }}</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="img/logo.png" alt="" class="img-fluid"></a>-->
+                {{-- <a href="#"><img src="img/favicon.png" alt="" class="img-fluid"></a> --}}
             </div>
             <nav class="nav-menu float-right d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
+                    <li class="active"><a href="#">{{ __('app.homePage') }}</a></li>
+                    <li><a href="#about">{{ __('app.aboutPage') }}</a></li>
+                    <li><a href="#services">{{ __('app.servicePage') }}</a></li>
+                    <li><a href="#portfolio">{{ __('app.portfolioPage') }}</a></li>
                     <li class="drop-down"><a href="">Drop Down</a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
-                            <li class="drop-down"><a href="#">Drop Down 2</a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                            <li><a href="#">Drop Down 5</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#contact">{{ __('app.contactPage') }}</a></li>
                 </ul>
             </nav>
         </div>
@@ -158,7 +150,7 @@
                     <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
 
                         <div class="section-title">
-                            <h2>About Us</h2>
+                            <h2>{{ __('app.aboutPage') }}</h2>
                             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
                                 quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
                                 impedit suscipit alias ea.</p>
@@ -182,61 +174,11 @@
             </div>
         </section>
 
-        <section class="about-lists">
-            <div class="container">
-
-                <div class="row no-gutters">
-
-                    <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up">
-                        <span>01</span>
-                        <h4>Lorem Ipsum</h4>
-                        <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat
-                        </p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="100">
-                        <span>02</span>
-                        <h4>Repellat Nihil</h4>
-                        <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire
-                            leno para dest</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="200">
-                        <span>03</span>
-                        <h4> Ad ad velit qui</h4>
-                        <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis
-                        </p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="300">
-                        <span>04</span>
-                        <h4>Repellendus molestiae</h4>
-                        <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider
-                            lando casa</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="400">
-                        <span>05</span>
-                        <h4>Sapiente Magnam</h4>
-                        <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est
-                            quibusdam</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="500">
-                        <span>06</span>
-                        <h4>Facilis Impedit</h4>
-                        <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae
-                            voluptatibus corporis sequi</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="services" class="services">
             <div class="container">
 
                 <div class="section-title">
-                    <h2>Services</h2>
+                    <h2>{{ __('app.servicePage') }}</h2>
                 </div>
 
                 <div class="row">
@@ -280,11 +222,11 @@
             </div>
         </section>
 
-        <section id="portfolio" class="portfolio section-bg">
+        <section id="portfolio" class="portfolio">
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="section-title">
-                    <h2>Our Portfolio</h2>
+                <h2>{{ __('app.servicePage') }}</h2>
                     <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
                         sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
                         ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
@@ -454,7 +396,7 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2>Contact Us</h2>
+                    <h2>{{ __('app.contactPage') }}</h2>
                 </div>
 
                 <div class="row">
@@ -545,18 +487,18 @@
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
+                        <h4>{{ __('app.usefulLinks')}}</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.homePage')}}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.aboutPage')}}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.servicePage')}}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.termsofService')}}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.privacyPolicy')}}</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
+                        <h4>{{ __('app.servicePage')}}</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
