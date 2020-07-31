@@ -17,13 +17,13 @@
     <meta name="author" content="CodedThemes"/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/animation/css/animate.min.css') }}">
     <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
     {{-- <div id="app">
@@ -105,7 +105,7 @@
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Posts</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="bc_button.html" class="">Posts Menegement</a></li>
-                            <li class=""><a href="bc_badges.html" class="">Post Types Menegement</a></li>
+                        <li class=""><a href="{{ route('post_type.index') }}" class="">Post Types Menegement</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -240,14 +240,21 @@
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
+                @if(session()->get('success'))
+                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                    <strong>Message!</strong> {{ session()->get('success') }}.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                @endif
                 @yield('content')
             </div>
         </div>
     </div>
 
-    <script src="js/vendor-all.min.js"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/pcoded.min.js"></script>
-
+    <script src="{{ asset('js/vendor-all.min.js') }}"></script>
+	<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/pcoded.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    
 </body>
 </html>

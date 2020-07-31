@@ -163,6 +163,7 @@
   // Initiate the venobox plugin
   $(window).on('load', function() {
     $('.venobox').venobox();
+    $('.fixed-button active').hide();
   });
 
   // jQuery counterUp
@@ -201,6 +202,7 @@
     loop: true,
     items: 1
   });
+
 
   // Init AOS
   function aos_init() {

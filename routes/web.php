@@ -21,3 +21,4 @@ Route::get('lang/{locale}', 'LocalizationController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('post_type','PostTypeController');
