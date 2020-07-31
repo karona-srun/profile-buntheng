@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('lang/{locale}', 'LocalizationController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
