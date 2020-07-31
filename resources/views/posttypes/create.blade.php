@@ -1,0 +1,66 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Post Type Page</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="javascript:">Create Post Type</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                <a href="{{ route('post_type.index') }}" class="btn btn-primary shadow-2 pull-right" title="" data-toggle="tooltip" data-original-title="Post Type List"><i class="feather icon-arrow-left"></i> Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Basic Componant</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form method="post" action="{{ route('post_type.store') }}">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label>Post Type</label>
+                                            <input type="text" name="post_type" class="form-control" placeholder="Post type" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Satus</label>
+                                            <select class="form-control" name="status" id="exampleFormControlSelect1">
+                                                <option value="0">Private</option>
+                                                <option value="1">Public</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Description</label>
+                                            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn shadow-2 btn-primary"><i class="feather icon-save"></i> Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

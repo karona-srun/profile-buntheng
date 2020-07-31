@@ -21,3 +21,10 @@ Route::get('lang/{locale}', 'LocalizationController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('post_type','PostTypeController');
+
+
+Route::get('/clear-cache', function() {
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+});
