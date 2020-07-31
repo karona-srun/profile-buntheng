@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/animation/css/animate.min.css') }}">
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/data-tables/css/datatables.min.css') }}">
 </head>
 <body>
     {{-- <div id="app">
@@ -98,14 +99,14 @@
                     <li class="nav-item pcoded-menu-caption">
                         <label>Navigation</label>
                     </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="{{ request()->is('home') ? 'nav-item active' : '' }}">
                         <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
+                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="{{ request()->is('post_type*') ? 'nav-item pcoded-hasmenu active pcoded-trigger' : 'nav-item pcoded-hasmenu' }}">
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Posts</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="bc_button.html" class="">Posts Menegement</a></li>
-                        <li class=""><a href="{{ route('post_type.index') }}" class="">Post Types Menegement</a></li>
+                            <li class="{{ request()->is('post_type*') ? 'active' : '' }}"><a href="{{ route('post_type.index') }}" class="">Post Types Menegement</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -169,7 +170,7 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="{{ asset('images/user/avatar-1.jpg') }}" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>New ticket Added</p>
@@ -181,7 +182,7 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="{{ asset('images/user/avatar-2.jpg') }}" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>Prchace New Theme and make payment</p>
@@ -190,7 +191,7 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="{{ asset('images/user/avatar-3.jpg') }}" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>currently login</p>
@@ -211,7 +212,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
-                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                <img src="{{ asset('images/user/avatar-1.jpg') }}" class="img-radius" alt="User-Profile-Image">
                                 <span>{{ Auth::user()->name }}</span>
                             
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -255,6 +256,7 @@
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/pcoded.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    
+    <script src="{{ asset('plugins/data-tables/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('plugins/data-tables/js/tbl-datatable-custom.js') }}"></script>
 </body>
 </html>

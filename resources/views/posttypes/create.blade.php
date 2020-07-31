@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                <a href="{{ route('post_type.index') }}" class="btn btn-secondary pull-right" title="" data-toggle="tooltip" data-original-title="Post Type List">List</a>
+                <a href="{{ route('post_type.index') }}" class="btn btn-primary shadow-2 pull-right" title="" data-toggle="tooltip" data-original-title="Post Type List"><i class="feather icon-arrow-left"></i> Back</a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                                             <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <button type="submit" class="btn shadow-2 btn-primary"><i class="feather icon-save"></i> Save</button>
                                         </div>
                                     </form>
                                 </div>

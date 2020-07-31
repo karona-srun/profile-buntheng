@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                <a href="{{ route('post_type.create') }}" class="btn btn-secondary pull-right" title="" data-toggle="tooltip" data-original-title="Create Post Type">Create</a>
+                <a href="{{ route('post_type.create') }}" class="btn shadow-2 btn-primary pull-right" title="" data-toggle="tooltip" data-original-title="Create Post Type">Create <i class="feather icon-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table id="zero-configuration" class="display nowrap table-striped table-hover" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -50,7 +50,7 @@
                                     <tbody>
                                         @foreach ($collection as $i => $item)
                                         <tr>
-                                        <th scope="row">{{ ++$i }}</th>
+                                        <td scope="row">{{ ++$i }}</td>
                                             <td>{{ $item->post_type }}</td>
                                             <td><span class="badge badge-primary">{{ $item->is_public === 0 ? 'Private' : 'Public' }}</span></td>
                                             <td>{{ $item->description === null ? 'Created post type': $item->description }}</td>
@@ -60,11 +60,11 @@
                                             <td>{{ $item->updated_at->format('d/m/Y h:i:s A') }}</td>
                                             <td>
                                                 <div class="btn btn-group">
-                                                <a href="{{ route('post_type.edit',$item->id)}}" class="btn btn-outline-primary btn-small"><i class="feather icon-edit-1"></i></a> 
+                                                <a href="{{ route('post_type.edit',$item->id)}}" class="btn btn-outline-primary shadow-2 btn-small"><i class="feather icon-edit-1"></i></a> 
                                                 <form action="{{ route('post_type.destroy', $item->id)}}" method="post">
                                                   @csrf
                                                   @method('DELETE')
-                                                  <button type="submit" class="btn btn-outline-danger btn-small"><i class="feather icon-trash-2"></i></button>
+                                                  <button type="submit" class="btn btn-outline-danger shadow-2 btn-small"><i class="feather icon-trash-2"></i></button>
                                                 </form>
                                             </div>
                                             </td>
