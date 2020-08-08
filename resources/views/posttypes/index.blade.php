@@ -1,83 +1,101 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="pcoded-inner-content">
-    <!-- [ breadcrumb ] start -->
-    <div class="page-header">
-        <div class="page-block">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Post Type Page</h5>
-                    </div>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="javascript:">Post Type List</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                <a href="{{ route('post_type.create') }}" class="btn shadow-2 btn-primary pull-right" title="" data-toggle="tooltip" data-original-title="Create Post Type">Create <i class="feather icon-plus"></i></a>
-                </div>
-            </div>
+    <div class="row pd-5">
+        <div class="col-6">
+            <h4>Post type</h4>
+            <p class="text-gray">Welcome aboard, Allen Clerk</p>
+        </div>
+        <div class="col-6">
+            <a href="{{ route('post_type.create') }}" class="btn btn-primary has-icon pull-right"><i
+                    class="mdi mdi-plus"></i> Create</a>
         </div>
     </div>
-
-    <div class="main-body">
-        <div class="page-wrapper">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Table</h5>
-                            {{-- <span class="d-block m-t-5">use class <code>table-striped</code> inside table element</span> --}}
-                        </div>
-                        <div class="card-block table-border-style">
-                            <div class="table-responsive">
-                                <table id="zero-configuration" class="display nowrap table-striped table-hover" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Post type</th>
-                                            <th>Status</th>
-                                            <th>Description</th>
-                                            <th>Created by</th>
-                                            <th>Created at</th>
-                                            <th>Updated by</th>
-                                            <th>Updated at</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($collection as $i => $item)
-                                        <tr>
-                                        <td scope="row">{{ ++$i }}</td>
-                                            <td>{{ $item->post_type }}</td>
-                                            <td><span class="badge badge-primary">{{ $item->is_public === 0 ? 'Private' : 'Public' }}</span></td>
-                                            <td>{{ $item->description === null ? 'Created post type': $item->description }}</td>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="grid">
+                <div class="grid-body">
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                            <table id="sample-data-table" class="data-table table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Post type</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Created by</th>
+                                        <th>Created at</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($collection as $i => $item)
+                                        <tr id="tr_{{ $item->id }}">
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ Session::get('locale') == 'kh' ? $item->post_type_kh : $item->post_type_en }}
+                                            </td>
+                                            <td>{{ Session::get('locale') == 'kh' ? substr($item->description_kh, 0, 20) : substr($item->description_en, 0, 20) }}...
+                                            </td>
+                                            <td><label
+                                                    class="{{ $item->is_public == 1 ? 'badge badge-success' : 'badge badge-danger' }}">{{ $item->is_public == 1 ? 'Public' : 'Private' }}</label>
+                                            </td>
                                             <td>{{ $item->creator->name }}</td>
                                             <td>{{ $item->created_at->format('d/m/Y h:i:s A') }}</td>
-                                            <td>{{ $item->updator->name }}</td>
-                                            <td>{{ $item->updated_at->format('d/m/Y h:i:s A') }}</td>
                                             <td>
-                                                <div class="btn btn-group">
-                                                <a href="{{ route('post_type.edit',$item->id)}}" class="btn btn-outline-primary shadow-2 btn-small"><i class="feather icon-edit-1"></i></a> 
-                                                <form action="{{ route('post_type.destroy', $item->id)}}" method="post">
-                                                  @csrf
-                                                  @method('DELETE')
-                                                  <button type="submit" class="btn btn-outline-danger shadow-2 btn-small"><i class="feather icon-trash-2"></i></button>
-                                                </form>
-                                            </div>
+                                                <div class="btn-group">
+                                                    <a href="{{ route('post_type.show', $item->id) }}"
+                                                        class="btn btn-sm btn-info social-icon-btn"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                    <a href="{{ route('post_type.edit', $item->id) }}"
+                                                        class="btn btn-sm btn-warning social-icon-btn"><i
+                                                            class="mdi mdi-grease-pencil"></i></a>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-warning social-icon-btn confirmation"
+                                                        data-toggle="modal" data-target="#small-modal"
+                                                        data-id="{{ $item->id }}"><i class="mdi mdi-delete"></i></button>
+                                                </div>
                                             </td>
                                         </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="small-modal" style="display: none; padding-left: 0px;"
+        aria-modal="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5><button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to delete the selected record ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><i class="mdi mdi-close"></i> Close</button>
+                    <form action="" method="post" id="form">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.confirmation').click(function() {
+                $('#form').attr('action', "post_type/" + $(this).attr('data-id'));
+            })
+        })
+
+    </script>
 @endsection

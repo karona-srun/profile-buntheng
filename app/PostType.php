@@ -3,12 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\Uuids;
 
 class PostType extends Model
 {
+    use Uuids;
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected $guarded = [];
+
     protected $table = 'post_types';
 
-    protected $fillable = ['post_type','description','is_public','created_by','updated_by'];
+    protected $fillable = ['post_type_en','post_type_kh','description_en','description_kh','is_public','created_by','updated_by'];
 
     public function creator()
     {

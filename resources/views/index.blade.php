@@ -23,52 +23,7 @@
 </head>
 
 <body>
-    <section id="topbar" class="">
-        <div class="container clearfix">
-            <div class="contact-info float-left">
-                <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="icofont-phone"></i> +1 5589 55488 55
-            </div>
-            <div class="social-links float-right">
-                
-                <a href="{{ Session::get('locale') == "kh" ? url('lang/en') : url('lang/kh') }}" class="twitter">
-                <img src="https://www.worldometers.info/img/flags/{{ Session::get('locale') == "kh" ? 'cb' : 'us'}}-flag.gif" alt="" width="30px" height="20px" srcset="">
-                    <i class="icofont-direction-sign"></i> {{ Session::get('locale') == "kh" ? 'Khmer' : 'English'}}
-                </a>
-                <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-                <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-                <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-                <a href="#" class="skype"><i class="icofont-skype"></i></a>
-                <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
-            </div>
-        </div>
-    </section>
-
-    <header id="header">
-        <div class="container">
-            <div class="logo float-left">
-                <h1 class="text-light"><a href="index.html"><span>{{ __('app.appName') }}</span></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                {{-- <a href="#"><img src="img/favicon.png" alt="" class="img-fluid"></a> --}}
-            </div>
-            <nav class="nav-menu float-right d-none d-lg-block">
-                <ul>
-                    <li class="active"><a href="#">{{ __('app.homePage') }}</a></li>
-                    <li><a href="#about">{{ __('app.aboutPage') }}</a></li>
-                    <li><a href="#services">{{ __('app.servicePage') }}</a></li>
-                    <li><a href="#portfolio">{{ __('app.portfolioPage') }}</a></li>
-                    <li class="drop-down"><a href="">Drop Down</a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li><a href="#">Drop Down 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">{{ __('app.contactPage') }}</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    @include('layouts.header')
     <section id="hero">
         <div class="hero-container">
             <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -136,44 +91,6 @@
     </section>
 
     <main id="main">
-
-        <section id="about" class="about">
-            <div class="container">
-
-                <div class="row no-gutters">
-                    <div class="col-lg-6 video-box">
-                        <img src="img/about.jpg" class="img-fluid" alt="">
-                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4"
-                            data-vbtype="video" data-autoplay="true"></a>
-                    </div>
-
-                    <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
-
-                        <div class="section-title">
-                            <h2>{{ __('app.aboutPage') }}</h2>
-                            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
-                                quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-                                impedit suscipit alias ea.</p>
-                        </div>
-
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                excepturi sint occaecati cupiditate non provident</p>
-                        </div>
-
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon"><i class="bx bx-gift"></i></div>
-                            <h4 class="title"><a href="">Nemo Enim</a></h4>
-                            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                                blanditiis praesentium voluptatum deleniti atque</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="services" class="services">
             <div class="container">
 
@@ -235,6 +152,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <ul id="portfolio-flters">
+                            @foreach ($posttype as $item)
+                            <li data-filter="*" class="filter-active">{{ Session::get('locale') == "kh" ?  $item->post_type_kh : $item->post_type_en }}</li>
+                            @endforeach
                             <li data-filter="*" class="filter-active">All</li>
                             <li data-filter=".filter-app">App</li>
                             <li data-filter=".filter-card">Card</li>
@@ -244,18 +164,32 @@
                 </div>
 
                 <div class="row portfolio-container">
-
+                    @foreach ($post as $item)
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
                             <img src="img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>App 1</h4>
+                                <h4>{{ Session::get('locale') == "kh" ?  $item->title_kh : $item->title_en }}</h4>
+                                <p>{{ Session::get('locale') == "kh" ?  $item->post_type->post_type_kh : $item->post_type->post_type_en }}</p>
+                                <div class="portfolio-links">
+                                    <a href="img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox"
+                                        title="{{Session::get('locale') == "kh" ?  $item->title_kh : $item->title_en }}" data-desc="Description 1"><i class="icofont-eye"></i></a>
+                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img src="img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>App 1 Title</h4>
                                 <p>App</p>
                                 <div class="portfolio-links">
                                     <a href="img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="App 1"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
+                                        title="Title 1" data-desc="Description 1"><i class="icofont-eye"></i></a>
+                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -269,9 +203,8 @@
                                 <p>Web</p>
                                 <div class="portfolio-links">
                                     <a href="img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Web 3"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
+                                        title="Title 2" data-desc="Description 2"><i class="icofont-eye"></i></a>
+                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -285,105 +218,8 @@
                                 <p>App</p>
                                 <div class="portfolio-links">
                                     <a href="img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="App 2"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Card 2</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Card 2"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Web 2</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Web 2"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 3</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="App 3"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Card 1</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Card 1"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Card 3</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Card 3"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Web 3"><i class="icofont-eye"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i
-                                            class="icofont-external-link"></i></a>
+                                        title="Title 3" data-desc="Description 3" ><i class="icofont-eye"></i></a>
+                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -424,103 +260,11 @@
                             <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
                         </div>
                     </div>
-
-                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="form-row">
-                                <div class="col-lg-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" data-rule="minlen:4"
-                                        data-msg="Please enter at least 4 chars" />
-                                    <div class="validate"></div>
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" data-rule="email"
-                                        data-msg="Please enter a valid email" />
-                                    <div class="validate"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Subject" data-rule="minlen:4"
-                                    data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validate"></div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" data-rule="required"
-                                    data-msg="Please write something for us" placeholder="Message"></textarea>
-                                <div class="validate"></div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
     <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>Mamba</h3>
-                        <p>
-                            A108 Adam Street <br>
-                            NY 535022, USA<br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>{{ __('app.usefulLinks')}}</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.homePage')}}</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.aboutPage')}}</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.servicePage')}}</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.termsofService')}}</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('app.privacyPolicy')}}</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>{{ __('app.servicePage')}}</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong><span>Mamba</span></strong>. All Rights Reserved
@@ -539,7 +283,7 @@
     <script src="vendor/jquery.easing/jquery.easing.min.js"></script>
     <script src="vendor/php-email-form/validate.js"></script>
     <script src="vendor/jquery-sticky/jquery.sticky.js"></script>
-    <script src="vendor/venobox/venobox.min.js"></script>
+    <script src="vendor/venobox/venobox.js"></script>
     <script src="vendor/waypoints/jquery.waypoints.min.js"></script>
     <script src="vendor/counterup/counterup.min.js"></script>
     <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
@@ -550,3 +294,6 @@
 </body>
 
 </html>
+
+
+    
