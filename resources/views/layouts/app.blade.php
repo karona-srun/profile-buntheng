@@ -1,262 +1,154 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
-    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template"/>
-    <meta name="author" content="CodedThemes"/>
-
-    <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
-    <!-- fontawesome icon -->
-    <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
-    <!-- animation css -->
-    <link rel="stylesheet" href="{{ asset('plugins/animation/css/animate.min.css') }}">
-    <!-- vendor css -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/data-tables/css/datatables.min.css') }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>appName</title>
+    <link rel="stylesheet" href="{{ asset('plugin/vendors/iconfonts/mdi/css/materialdesignicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/css/shared/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/css/stylelight/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('plugin/css/vendor.addons.css') }}">
+	<link rel="stylesheet" href="{{ asset('plugin/summernote-0.8.18/summernote-lite.css') }}">
+    <link rel="shortcut icon" href=".{{ asset('plugin/images/favicon.ico') }}" />
 </head>
-<body>
-    {{-- <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+<body class="header-fixed">
+    <nav class="t-header">
+		<div class="t-header-brand-wrapper">
+			<a href="index.html"> <img class="logo" src="../assets/images/logo.svg" alt=""> <img class="logo-mini" src="../assets/images/logo_mini.svg" alt=""> </a>
+			<button class="t-header-toggler t-header-desk-toggler d-none d-lg-block">
+				<svg class="logo" viewBox="0 0 200 200">
+					<path class="top" d="M 40, 80 C 40, 80 120, 80 140, 80 C180, 80 180, 20  90, 80 C 60,100  30,120  30,120"></path>
+					<path class="middle" d=" M 40,100 L140,100"></path>
+					<path class="bottom" d="M 40,120 C 40,120 120,120 140,120 C180,120 180,180 90,120 C 60,100  30, 80  30, 80"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="t-header-content-wrapper">
+			<div class="t-header-content">
+				<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none"><i class="mdi mdi-menu"></i></button>
+				<form action="#" class="t-header-search-box">
+					<div class="input-group">
+						<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+						<button class="btn btn-primary" type="submit"> <i class="mdi mdi-arrow-right-thick"></i></button>
+					</div>
+				</form>
+				<ul class="nav ml-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-bell-outline mdi-1x"></i></a>
+						<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+							<div class="dropdown-header">
+								<h6 class="dropdown-title">Notifications</h6>
+								<p class="dropdown-title-text">You have 4 unread notification</p>
+							</div>
+							<div class="dropdown-body">
+								<div class="dropdown-list">
+									<div class="icon-wrapper rounded-circle bg-inverse-primary text-primary"> <i class="mdi mdi-alert"></i> </div>
+									<div class="content-wrapper"> <small class="name">Storage Full</small> <small class="content-text">Server storage almost full</small> </div>
+								</div>
+								<div class="dropdown-list">
+									<div class="icon-wrapper rounded-circle bg-inverse-success text-success"> <i class="mdi mdi-cloud-upload"></i> </div>
+									<div class="content-wrapper"> <small class="name">Upload Completed</small> <small class="content-text">3 Files uploded successfully</small> </div>
+								</div>
+								<div class="dropdown-list">
+									<div class="icon-wrapper rounded-circle bg-inverse-warning text-warning"> <i class="mdi mdi-security"></i> </div>
+									<div class="content-wrapper"> <small class="name">Authentication Required</small> <small class="content-text">Please verify your password to continue using cloud services</small> </div>
+								</div>
+							</div>
+							<div class="dropdown-footer"> <a href="#">View All</a> </div>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-message-outline mdi-1x"></i> <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span> </a>
+						<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+							<div class="dropdown-header">
+								<h6 class="dropdown-title">Messages</h6>
+								<p class="dropdown-title-text">You have 4 unread messages</p>
+							</div>
+							<div class="dropdown-body">
+								<div class="dropdown-list">
+									<div class="image-wrapper"> <img class="profile-img" src="../assets/images/profile/male/image_1.png" alt="profile image">
+										<div class="status-indicator rounded-indicator bg-success"></div>
+									</div>
+									<div class="content-wrapper"> <small class="name">Clifford Gordon</small> <small class="content-text">Lorem ipsum dolor sit amet.</small> </div>
+								</div>
+								<div class="dropdown-list">
+									<div class="image-wrapper"><img class="profile-img" src="../assets/images/profile/female/image_2.png" alt="profile image">
+										<div class="status-indicator rounded-indicator bg-success"></div>
+									</div>
+									<div class="content-wrapper"> <small class="name">Rachel Doyle</small> <small class="content-text">Lorem ipsum dolor sit amet.</small> </div>
+								</div>
+								<div class="dropdown-list">
+									<div class="image-wrapper"> <img class="profile-img" src="../assets/images/profile/male/image_3.png" alt="profile image">
+										<div class="status-indicator rounded-indicator bg-warning"></div>
+									</div>
+									<div class="content-wrapper"> <small class="name">Lewis Guzman</small> <small class="content-text">Lorem ipsum dolor sit amet.</small> </div>
+								</div>
+							</div>
+							<div class="dropdown-footer"><a href="#">View All</a></div>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-apps mdi-1x"></i></a>
+						<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+							<div class="dropdown-header">
+								<h6 class="dropdown-title">Apps</h6>
+								<p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+							</div>
+							<div class="dropdown-body border-top pt-0"><a class="dropdown-grid"><i class="grid-icon mdi mdi-jira mdi-2x"></i> <span class="grid-tittle">Jira</span> </a><a class="dropdown-grid"><i class="grid-icon mdi mdi-trello mdi-2x"></i> <span class="grid-tittle">Trello</span> </a><a class="dropdown-grid"><i class="grid-icon mdi mdi-artstation mdi-2x"></i> <span class="grid-tittle">Artstation</span> </a><a class="dropdown-grid"><i class="grid-icon mdi mdi-bitbucket mdi-2x"></i> <span class="grid-tittle">Bitbucket</span></a></div>
+							<div class="dropdown-footer"><a href="#">View All</a></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-                    </ul>
+	<div class="page-body">
+		@include('partials.sidebar')
+		<div class="page-content-wrapper">
+			<div class="page-content-wrapper-inner">
+				<div class="content-viewport">
+					@include('flash-message')
+					@yield('content')
+				</div>
+			</div>
+			@include('partials.footer')
+		</div>
+	</div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+	<script src="{{ asset('plugin/vendors/js/core.js') }}"></script>
+    <script src="{{ asset('plugin/vendors/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('plugin/vendors/chartjs/Chart.min.js') }}"></script>
+    <script src="{{ asset('plugin/js/charts/chartjs.addon.js') }}"></script>
+    <script src="{{ asset('plugin/js/dashboard.js') }}"></script>
+	<script src="{{ asset('plugin/vendors/js/vendor.addons.js') }}"></script>
+	<script src="{{ asset('plugin/summernote-0.8.18/summernote-lite.js') }}"></script>
+	<script src="{{ asset('plugin/js/script.js') }}"></script>
+	
+    @yield('script')
+	<script type="text/javascript">
+		$(document).ready(function () {
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+			setTimeout(function() {
+				$('.alert-wrapper').slideUp();
+			}, 5000);
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+			$('.summernote').summernote({
+				toolbar: [
+					// [groupName, [list of button]]
+					['style', ['bold', 'italic', 'underline', 'clear']],
+					['font', ['strikethrough', 'superscript', 'subscript']],
+					['fontsize', ['fontsize']],
+					['color', ['color']],
+					['para', ['ul', 'ol', 'paragraph']],
+					['height', ['height']]
+				]
+			});
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div> --}}
-
-    <nav class="pcoded-navbar">
-        <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo">
-               <a href="index.html" class="b-brand">
-                   <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
-                   </div>
-                   <span class="b-title">Datta Able</span>
-               <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-           </div>
-            <div class="navbar-content scroll-div">
-                <ul class="nav pcoded-inner-navbar">
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Navigation</label>
-                    </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="{{ request()->is('home') ? 'nav-item active' : '' }}">
-                        <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
-                    </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="{{ request()->is('post_type*') ? 'nav-item pcoded-hasmenu active pcoded-trigger' : 'nav-item pcoded-hasmenu' }}">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Posts</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="bc_button.html" class="">Posts Menegement</a></li>
-                            <li class="{{ request()->is('post_type*') ? 'active' : '' }}"><a href="{{ route('post_type.index') }}" class="">Post Types Menegement</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light">
-        <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
-                   <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
-                   </div>
-                   <span class="b-title">Datta Able</span>
-               </a>
-        </div>
-        <a class="mobile-menu" id="mobile-header" href="javascript:">
-            <i class="feather icon-more-horizontal"></i>
-        </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="javascript:">Action</a></li>
-                        <li><a class="dropdown-item" href="javascript:">Another action</a></li>
-                        <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <div class="main-search">
-                        <div class="input-group">
-                            <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
-                            <a href="javascript:" class="input-group-append search-close">
-                                <i class="feather icon-x input-group-text"></i>
-                            </a>
-                            <span class="input-group-append search-btn btn btn-primary">
-                                <i class="feather icon-search input-group-text"></i>
-                            </span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right notification">
-                            <div class="noti-head">
-                                <h6 class="d-inline-block m-b-0">Notifications</h6>
-                                <div class="float-right">
-                                    <a href="javascript:" class="m-r-10">mark as read</a>
-                                    <a href="javascript:">clear all</a>
-                                </div>
-                            </div>
-                            <ul class="noti-body">
-                                <li class="n-title">
-                                    <p class="m-b-0">NEW</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{ asset('images/user/avatar-1.jpg') }}" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>New ticket Added</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="n-title">
-                                    <p class="m-b-0">EARLIER</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{ asset('images/user/avatar-2.jpg') }}" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Prchace New Theme and make payment</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{ asset('images/user/avatar-3.jpg') }}" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>currently login</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="noti-footer">
-                                <a href="javascript:">show all</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown drp-user">
-                        <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon feather icon-settings"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification">
-                            <div class="pro-head">
-                                <img src="{{ asset('images/user/avatar-1.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                                <span>{{ Auth::user()->name }}</span>
-                            
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                </a>
-                                <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();" class="dud-logout" title="Logout">
-                                    <i class="feather icon-log-out"></i>
-                                </a>
-                            </div>
-                            <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </header>
-
-    <div class="pcoded-main-container">
-        <div class="pcoded-wrapper">
-            <div class="pcoded-content">
-                @if(session()->get('success'))
-                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                    <strong>Message!</strong> {{ session()->get('success') }}.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                @endif
-                @yield('content')
-            </div>
-        </div>
-    </div>
-
-    <script src="{{ asset('js/vendor-all.min.js') }}"></script>
-	<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/pcoded.min.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('plugins/data-tables/js/datatables.min.js') }}"></script>
-    <script src="{{ asset('plugins/data-tables/js/tbl-datatable-custom.js') }}"></script>
+		});
+	</script>
 </body>
+
 </html>

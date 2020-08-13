@@ -13,18 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/','IndexController@index');
+Route::get('/details/{id}','IndexController@details');
 
 Route::get('lang/{locale}', 'LocalizationController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('post_type','PostTypeController');
+Route::resource('post','PostController');
 
 
 Route::get('/clear-cache', function() {
     Artisan::call('config:cache');
     Artisan::call('cache:clear');
+    return redirect('/');
 });

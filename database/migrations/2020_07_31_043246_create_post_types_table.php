@@ -14,12 +14,14 @@ class CreatePostTypesTable extends Migration
     public function up()
     {
         Schema::create('post_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('post_type');
-            $table->string('description')->nullable();
+            $table->uuid('id')->primary();
+            $table->string('post_type_en');
+            $table->string('post_type_kh');
+            $table->longText('description_en')->nullable();
+            $table->longText('description_kh')->nullable();
             $table->tinyInteger('is_public')->default('0')->comment('0 is private');
-            $table->tinyInteger('created_by');
-            $table->tinyInteger('updated_by');
+            $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }
