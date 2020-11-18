@@ -47,7 +47,20 @@
                                     <dd class="col-sm-3 text-danger">Updated by</dd>
                                     <dt class="col-sm-9 text-danger">{{ $post->updator->name}}</dt>
                                     <dd class="col-sm-3">Thumbnail</dd>
-                                    <dt class="col-sm-9 text-truncate"><img src="{{ asset('images/attachment.png')}}" class="img-fluid img-thumbnail" alt="" srcset=""></dt>
+                                    <dt class="col-sm-9 text-truncate">
+                                    @php
+                                        $splitName = explode('/', $post->thumbnail, 2);
+                                    @endphp
+                                    <img src="{{ asset('storage/'.$splitName[1]) }}" class="img-fluid img-thumbnail" alt="" srcset=""></dt>
+                                    <dd class="col-sm-3">Thumbnail</dd>
+                                    <dt class="col-sm-9 text-truncate">
+                                    @foreach ($attachemnts as $item)
+                                        @php
+                                            $splitName = explode('/', $item->path, 2);
+                                        @endphp
+                                        <img src="{{ asset('storage/'.$splitName[1]) }}" alt="" srcset=""><br><br>
+                                    @endforeach
+                                    </dt>
                                     <dt class="col-sm-3">Body</dt>
                                     <dd class="col-sm-9">{!! Session::get('locale') == "kh" ? $post->body_kh : $post->body_en !!}</dd>
                                     

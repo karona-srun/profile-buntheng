@@ -51,12 +51,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate([
             'title_en' => 'required',
             'body_en' => 'required',
             'title_kh' => 'required',
             'body_kh' => 'required',
-            // 'thumbnail'  =>  'required|file|image|mimes:jpeg,png,gif,jpg|max:10248'
+            'imageFile' => 'required',
+            'imageFile.*' => 'mimes:jpg,jpeg,png,gif',
+            'thumbnail'  =>  'required',
+            'thumbnail.*' => 'mimes:jpg,jpeg,png,gif',
         ]);    
         
         $message=$request->body_en;
@@ -97,11 +101,18 @@ class PostController extends Controller
                 $image->setAttribute('src', Storage::disk('public')->url($path));
             }
         }
+
         $body_kh = $dom_kh->saveHTML();
 
+        if($thumbnail = $request->file('thumbnail')){
+            $thumbnailName = $thumbnail->getClientOriginalName();
+            $thumbnailPath = $thumbnail->storeAs('public/thumbnails', $thumbnailName);
+            //$thumbnail->move($thumbnailPath, $thumbnailName);
+        }
         
         $post = Post::create([
             'post_type_id' => $request->post_type_id,
+            'thumbnail' => $thumbnailPath,
             'title_en' => $request->title_en,
             'body_en' =>  $body_en,
             'title_kh' => $request->title_kh,
@@ -110,33 +121,23 @@ class PostController extends Controller
             'created_by' => Auth::User()->id,
             'updated_by' => Auth::User()->id,
         ]);
-
-
-        // $data = $request->thumbnail;
-        // $photo = $request->file('thumbnail')->getClientOriginalName();
-        // $destination = storage_path('thumbnail');
-        // $url = $request->file('thumbnail')->move($destination, $photo);
-
-        if ($request->hasFile('thumbnail')) {
-            $image      = $request->file('thumbnail');
-            $fileName   = 'thumbnail_'.$post->id.'_time_'.time() . '.' . $image->getClientOriginalExtension();
-
-            $img = Image::make($image->getRealPath());
-            $img->resize(500, 500, function ($constraint) {
-                $constraint->aspectRatio();                 
-            });
-
-            $img->stream(); // <-- Key point
-
-            //dd();
-            Storage::disk('public')->put('thumbnail'.'/'.$fileName, $img, 'public');
-            $url = 'thumbnail/'.$fileName;
+        
+        if($imageFiles = $request->file('imageFile')){
+            foreach($imageFiles as $file) {
+                $name = $file->getClientOriginalName();
+                $mimetype = number_format($file->getSize()/1048576,3).' MB';
+                
+                $path = $file->storeAs('public/photos', $name);
+                if($path) {
+                    $save   =   Attachment::create([
+                    'post_id' => $post->id,
+                    'name' => $name,
+                    'path' => $path,
+                    'size' => $mimetype
+                    ]);
+                }
+            }
         }
-
-        Attachment::create([
-            'post_id' => $post->id,
-            'url' => $url
-        ]);
 
         return redirect()->route('post.index')
                         ->with('success','Post has been created successfully.');
@@ -151,7 +152,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post = Post::find($post->id);
-        return view('posts.show',['post' => $post]);
+        $attachemnts = Attachment::where('post_id',$post->id)->get();
+        return view('posts.show',['post' => $post,'attachemnts' => $attachemnts]);
     }
 
     /**

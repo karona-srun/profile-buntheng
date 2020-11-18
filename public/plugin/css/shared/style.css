@@ -526,6 +526,12 @@ mark {
     height: auto;
 }
 
+.img-thumbnail-small {
+    border-radius: 0.25rem;
+    max-width: 100px;
+    height: 100px;
+}
+
 .figure {
     display: inline-block;
 }

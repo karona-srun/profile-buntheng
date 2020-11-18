@@ -20,25 +20,28 @@
                             <table id="sample-data-table" class="data-table table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th style="width: 10px">No</th>
+                                        <th style="width: 80px">Thumbnail</th>
                                         <th>Post</th>
-                                        <th>Status</th>
-                                        <th>Created by</th>
-                                        <th>Created at</th>
-                                        <th></th>
+                                        <th style="width: 60px">Status</th>
+                                        <th style="width: 80px"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($collection as $i => $item)
                                         <tr id="tr_{{ $item->id }}">
                                             <td>{{ ++$i }}</td>
+                                            <td>
+                                                @php
+                                                    $splitName = explode('/', $item->thumbnail, 2);
+                                                @endphp
+                                                <img src="{{ asset('storage/'.$splitName[1]) }}" class="img-fluid img-thumbnail-small" alt="" srcset=""></dt>
+                                            </td>
                                             <td>{{ Session::get('locale') == 'kh' ? substr($item->title_kh, 0, 20) : substr($item->title_en, 0, 20) }}...
                                             </td>
                                             <td><label
                                                     class="{{ $item->is_public == 1 ? 'badge badge-success' : 'badge badge-danger' }}">{{ $item->is_public == 1 ? 'Public' : 'Private' }}</label>
                                             </td>
-                                            <td>{{ $item->creator->name }}</td>
-                                            <td>{{ $item->created_at->format('d/m/Y h:i:s A') }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="{{ route('post.show', $item->id) }}"

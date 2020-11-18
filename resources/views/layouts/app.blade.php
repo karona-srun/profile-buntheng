@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{{ asset('plugin/css/stylelight/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('plugin/css/vendor.addons.css') }}">
 	<link rel="stylesheet" href="{{ asset('plugin/summernote-0.8.18/summernote-lite.css') }}">
-    <link rel="shortcut icon" href=".{{ asset('plugin/images/favicon.ico') }}" />
+	<link rel="shortcut icon" href=".{{ asset('plugin/images/favicon.ico') }}" />
+	@yield('css')
 </head>
 
 <body class="header-fixed">
@@ -135,16 +136,16 @@
 				$('.alert-wrapper').slideUp();
 			}, 5000);
 
-			$('.summernote').summernote({
-				toolbar: [
-					// [groupName, [list of button]]
-					['style', ['bold', 'italic', 'underline', 'clear']],
-					['font', ['strikethrough', 'superscript', 'subscript']],
-					['fontsize', ['fontsize']],
-					['color', ['color']],
-					['para', ['ul', 'ol', 'paragraph']],
-					['height', ['height']]
-				]
+			$('#summernoteExample').summernote({
+			toolbar: [
+				// [groupName, [list of button]]
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['font', ['strikethrough', 'superscript', 'subscript']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['height', ['height']]
+			]
 			});
 
 		});

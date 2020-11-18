@@ -14,7 +14,7 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = ['post_type_id','title_kh','title_en','body_en','body_kh','is_public','created_by','updated_by'];
+    protected $fillable = ['post_type_id','thumbnail','title_kh','title_en','body_en','body_kh','is_public','created_by','updated_by'];
 
     public function post_type()
     {
