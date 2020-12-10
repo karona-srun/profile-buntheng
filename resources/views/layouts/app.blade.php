@@ -4,151 +4,178 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>appName</title>
-    <link rel="stylesheet" href="{{ asset('plugin/vendors/iconfonts/mdi/css/materialdesignicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugin/css/shared/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugin/css/stylelight/style.css') }}">
-	<link rel="stylesheet" href="{{ asset('plugin/css/vendor.addons.css') }}">
-	<link rel="stylesheet" href="{{ asset('plugin/summernote-0.8.18/summernote-lite.css') }}">
-    <link rel="shortcut icon" href=".{{ asset('plugin/images/favicon.ico') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="{{ asset('vendor_be/vendors/choices.js/choices.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor_be/css/bootstrap.css') }}">
+    @yield('css')
+    <link rel="stylesheet" href="{{ asset('vendor_be/vendors/summernote-0.8.18/summernote-bs4.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendor_be/vendors/chartjs/Chart.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_be/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_be/vendors/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_be/css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('vendor_be/images/favicon.svg') }}" type="image/x-icon">
 </head>
 
-<body class="header-fixed">
-    <nav class="t-header">
-		<div class="t-header-brand-wrapper">
-			<a href="index.html"> <img class="logo" src="../assets/images/logo.svg" alt=""> <img class="logo-mini" src="../assets/images/logo_mini.svg" alt=""> </a>
-			<button class="t-header-toggler t-header-desk-toggler d-none d-lg-block">
-				<svg class="logo" viewBox="0 0 200 200">
-					<path class="top" d="M 40, 80 C 40, 80 120, 80 140, 80 C180, 80 180, 20  90, 80 C 60,100  30,120  30,120"></path>
-					<path class="middle" d=" M 40,100 L140,100"></path>
-					<path class="bottom" d="M 40,120 C 40,120 120,120 140,120 C180,120 180,180 90,120 C 60,100  30, 80  30, 80"></path>
-				</svg>
-			</button>
-		</div>
-		<div class="t-header-content-wrapper">
-			<div class="t-header-content">
-				<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none"><i class="mdi mdi-menu"></i></button>
-				<form action="#" class="t-header-search-box">
-					<div class="input-group">
-						<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
-						<button class="btn btn-primary" type="submit"> <i class="mdi mdi-arrow-right-thick"></i></button>
-					</div>
-				</form>
-				<ul class="nav ml-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-bell-outline mdi-1x"></i></a>
-						<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
-							<div class="dropdown-header">
-								<h6 class="dropdown-title">Notifications</h6>
-								<p class="dropdown-title-text">You have 4 unread notification</p>
-							</div>
-							<div class="dropdown-body">
-								<div class="dropdown-list">
-									<div class="icon-wrapper rounded-circle bg-inverse-primary text-primary"> <i class="mdi mdi-alert"></i> </div>
-									<div class="content-wrapper"> <small class="name">Storage Full</small> <small class="content-text">Server storage almost full</small> </div>
-								</div>
-								<div class="dropdown-list">
-									<div class="icon-wrapper rounded-circle bg-inverse-success text-success"> <i class="mdi mdi-cloud-upload"></i> </div>
-									<div class="content-wrapper"> <small class="name">Upload Completed</small> <small class="content-text">3 Files uploded successfully</small> </div>
-								</div>
-								<div class="dropdown-list">
-									<div class="icon-wrapper rounded-circle bg-inverse-warning text-warning"> <i class="mdi mdi-security"></i> </div>
-									<div class="content-wrapper"> <small class="name">Authentication Required</small> <small class="content-text">Please verify your password to continue using cloud services</small> </div>
-								</div>
-							</div>
-							<div class="dropdown-footer"> <a href="#">View All</a> </div>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-message-outline mdi-1x"></i> <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span> </a>
-						<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
-							<div class="dropdown-header">
-								<h6 class="dropdown-title">Messages</h6>
-								<p class="dropdown-title-text">You have 4 unread messages</p>
-							</div>
-							<div class="dropdown-body">
-								<div class="dropdown-list">
-									<div class="image-wrapper"> <img class="profile-img" src="../assets/images/profile/male/image_1.png" alt="profile image">
-										<div class="status-indicator rounded-indicator bg-success"></div>
-									</div>
-									<div class="content-wrapper"> <small class="name">Clifford Gordon</small> <small class="content-text">Lorem ipsum dolor sit amet.</small> </div>
-								</div>
-								<div class="dropdown-list">
-									<div class="image-wrapper"><img class="profile-img" src="../assets/images/profile/female/image_2.png" alt="profile image">
-										<div class="status-indicator rounded-indicator bg-success"></div>
-									</div>
-									<div class="content-wrapper"> <small class="name">Rachel Doyle</small> <small class="content-text">Lorem ipsum dolor sit amet.</small> </div>
-								</div>
-								<div class="dropdown-list">
-									<div class="image-wrapper"> <img class="profile-img" src="../assets/images/profile/male/image_3.png" alt="profile image">
-										<div class="status-indicator rounded-indicator bg-warning"></div>
-									</div>
-									<div class="content-wrapper"> <small class="name">Lewis Guzman</small> <small class="content-text">Lorem ipsum dolor sit amet.</small> </div>
-								</div>
-							</div>
-							<div class="dropdown-footer"><a href="#">View All</a></div>
-						</div>
-					</li>
-					<li class="nav-item dropdown"><a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-apps mdi-1x"></i></a>
-						<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
-							<div class="dropdown-header">
-								<h6 class="dropdown-title">Apps</h6>
-								<p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
-							</div>
-							<div class="dropdown-body border-top pt-0"><a class="dropdown-grid"><i class="grid-icon mdi mdi-jira mdi-2x"></i> <span class="grid-tittle">Jira</span> </a><a class="dropdown-grid"><i class="grid-icon mdi mdi-trello mdi-2x"></i> <span class="grid-tittle">Trello</span> </a><a class="dropdown-grid"><i class="grid-icon mdi mdi-artstation mdi-2x"></i> <span class="grid-tittle">Artstation</span> </a><a class="dropdown-grid"><i class="grid-icon mdi mdi-bitbucket mdi-2x"></i> <span class="grid-tittle">Bitbucket</span></a></div>
-							<div class="dropdown-footer"><a href="#">View All</a></div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<body>
+    <div id="app">
+        <div id="sidebar" class='active'>
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <img src="{{ asset('vendor_be/images/logo.svg') }}" alt="" srcset="">
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                    <li class='sidebar-title'>{{ __('app.mainMenu')}} </li>
+                        <li class="sidebar-item active ">
+                            <a href="{{ url('/home') }}" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                            <span>{{ __('app.dashboard')}}</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="triangle" width="20"></i>
+                                <span>{{ __('app.post')}}</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                <a href="{{ url('posts') }}">{{ __('app.list')}}{{ __('app.post')}}</a>
+                                </li>
+                                <li>
+                                <a href="{{ url('post-types') }}">{{ __('app.list')}}{{ __('app.postType')}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                            <span>{{ __('app.security')}}</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                <a href="{{ route('users.index')}}">{{ __('app.list')}}{{ __('app.user')}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <nav class="navbar navbar-header navbar-expand navbar-light">
+                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+                <button class="btn navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
+                        <li class="dropdown nav-icon mr-2">
+                            <a href="#" data-toggle="dropdown"
+                                class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="d-lg-inline-block">
+                                    <i data-feather="globe"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url('lang/kh')  }}">
+                                <img src="https://www.worldometers.info/img/flags/cb-flag.gif" alt="" width="30px" height="20px" srcset="">
+                                {{ __('app.khmer')}}</a>
+                                <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url('lang/en') }}">
+                                <img src="https://www.worldometers.info/img/flags/us-flag.gif" alt="" width="30px" height="20px" srcset="">
+                                {{ __('app.english')}}</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown"
+                                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="avatar mr-1">
+                                    <img src="{{ asset('vendor_be/images/avatar/avatar-s-1.png') }}" alt="" srcset="">
+                                </div>
+                                <div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#"><i data-feather="user"></i> {{ __('app.account')}}</a>
+                                <a class="dropdown-item" href="#"><i data-feather="key"></i> {{ __('app.changePassword')}}</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i data-feather="log-out"></i> {{ __('app.logout')}}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="main-content container-fluid">
+                @yield('content')
+            </div>
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-left">
+                        <p>2020 &copy; Prortfolio</p>
+                    </div>
+                    <div class="float-right">
+                        <p>Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a
+                                href="http://ahmadsaugi.com">Ahmad Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="{{ asset('vendor_be/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 
-	<div class="page-body">
-		@include('partials.sidebar')
-		<div class="page-content-wrapper">
-			<div class="page-content-wrapper-inner">
-				<div class="content-viewport">
-					@include('flash-message')
-					@yield('content')
-				</div>
-			</div>
-			@include('partials.footer')
-		</div>
-	</div>
-
-	<script src="{{ asset('plugin/vendors/js/core.js') }}"></script>
-    <script src="{{ asset('plugin/vendors/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('plugin/vendors/chartjs/Chart.min.js') }}"></script>
-    <script src="{{ asset('plugin/js/charts/chartjs.addon.js') }}"></script>
-    <script src="{{ asset('plugin/js/dashboard.js') }}"></script>
-	<script src="{{ asset('plugin/vendors/js/vendor.addons.js') }}"></script>
-	<script src="{{ asset('plugin/summernote-0.8.18/summernote-lite.js') }}"></script>
-	<script src="{{ asset('plugin/js/script.js') }}"></script>
-	
-    @yield('script')
-	<script type="text/javascript">
-		$(document).ready(function () {
-
-			setTimeout(function() {
-				$('.alert-wrapper').slideUp();
-			}, 5000);
-
-			$('.summernote').summernote({
-				toolbar: [
-					// [groupName, [list of button]]
-					['style', ['bold', 'italic', 'underline', 'clear']],
-					['font', ['strikethrough', 'superscript', 'subscript']],
-					['fontsize', ['fontsize']],
-					['color', ['color']],
-					['para', ['ul', 'ol', 'paragraph']],
-					['height', ['height']]
-				]
-			});
-
-		});
-	</script>
+    <script src="{{ asset('vendor_be/vendors/summernote-0.8.18/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('vendor_be/js/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('vendor_be/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('vendor_be/vendors/chartjs/Chart.min.js') }}"></script>
+    <script src="{{ asset('vendor_be/vendors/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('vendor_be/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('vendor_be/vendors/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('vendor_be/js/vendors.js') }}"></script>
+    <script src="{{ asset('vendor_be/vendors/choices.js/choices.min.js') }}"></script>
+    <script src="{{ asset('vendor_be/js/main.js') }}"></script>
+    <script src="{{ asset('vendor_be/js/app.js') }}"></script>
+    @yield('js')
+    <script>
+        $(document).ready(function(){
+            $('.summernote_en').summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ],
+                height: 200,
+                tooltip: false,
+            });
+            $('.summernote_kh').summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ],
+                height: 200,
+                tooltip: false,
+            });
+        })
+    </script>
 </body>
 
 </html>

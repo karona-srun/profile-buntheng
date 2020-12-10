@@ -49,20 +49,22 @@ class PostTypeController extends Controller
         $request->validate([
             'post_type_en'=>'required',
             'post_type_kh'=>'required',
+            'description_en' => 'required',
+            'description_kh' => 'required',
             'status'=>'required'
         ]);
 
         $posttype = new PostType([
             'post_type_en' => $request->post_type_en,
             'post_type_kh' => $request->post_type_kh,
-            'is_public' => $request->status,
+            'is_published' => $request->status,
             'description_en' => $request->description_en,
             'description_kh' => $request->description_kh,
             'created_by' => Auth::user()->id,
             'updated_by' => Auth::user()->id,
         ]);
         $posttype->save();
-        return redirect('/post_type')->with('success', 'Post Type has been created successfully!');
+        return redirect('/post-types')->with('success', 'Post Type has been created successfully!');
     }
 
     /**
@@ -96,24 +98,26 @@ class PostTypeController extends Controller
      * @param  \App\PostType  $postType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PostType $postType)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'post_type_en'=>'required',
             'post_type_kh'=>'required',
+            'description_en' => 'required',
+            'description_kh' => 'required',
             'status'=>'required'
         ]);
 
-        $posttype = PostType::find($postType->id);
+        $posttype = PostType::find($id);
         $posttype->post_type_en = $request->post_type_en;
         $posttype->post_type_kh = $request->post_type_kh;
-        $posttype->is_public = $request->status;
+        $posttype->is_published = $request->status;
         $posttype->description_en = $request->description_en;
         $posttype->description_kh = $request->description_kh;
         $posttype->updated_by = Auth::user()->id;
         $posttype->save();
 
-        return redirect('/post_type')->with('success', 'Post Type has been updated successfully!');
+        return redirect('/post-types')->with('success', 'Post Type has been updated successfully!');
     }
 
     /**
@@ -127,6 +131,6 @@ class PostTypeController extends Controller
         $posttype = PostType::find($postType->id);
         $posttype->delete();
 
-        return redirect('/post_type')->with('error', 'Post Type has been deleted successfully!');
+        return redirect('/post-types')->with('error', 'Post Type has been deleted successfully!');
     }
 }

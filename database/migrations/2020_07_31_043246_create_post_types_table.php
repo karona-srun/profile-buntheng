@@ -19,7 +19,7 @@ class CreatePostTypesTable extends Migration
             $table->string('post_type_kh');
             $table->longText('description_en')->nullable();
             $table->longText('description_kh')->nullable();
-            $table->tinyInteger('is_public')->default('0')->comment('0 is private');
+            $table->tinyInteger('is_published')->default('0')->comment('0 is is_published');
             $table->string('created_by');
             $table->string('updated_by');
             $table->timestamps();

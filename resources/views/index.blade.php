@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Template - Index</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
     <link href="img/favicon.png" rel="icon">
@@ -91,178 +91,11 @@
     </section>
 
     <main id="main">
-        <section id="services" class="services">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>{{ __('app.servicePage') }}</h2>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-                        <div class="icon"><i class="icofont-computer"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
-                        <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                        <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat tarad limino ata</p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon"><i class="icofont-earth"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur</p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon"><i class="icofont-image"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon"><i class="icofont-settings"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-                        <div class="icon"><i class="icofont-tasks-alt"></i></div>
-                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                            tempore, cum soluta nobis est eligendi</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="portfolio">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="section-title">
-                <h2>{{ __('app.servicePage') }}</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul id="portfolio-flters">
-                            @foreach ($posttype as $item)
-                            <li data-filter="*" class="filter-active">{{ Session::get('locale') == "kh" ?  $item->post_type_kh : $item->post_type_en }}</li>
-                            @endforeach
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row portfolio-container">
-                    @foreach ($post as $item)
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>{{ Session::get('locale') == "kh" ?  $item->title_kh : $item->title_en }}</h4>
-                                <p>{{ Session::get('locale') == "kh" ?  $item->post_type->post_type_kh : $item->post_type->post_type_en }}</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="{{Session::get('locale') == "kh" ?  $item->title_kh : $item->title_en }}" data-desc="Description 1"><i class="icofont-eye"></i></a>
-                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 1 Title</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Title 1" data-desc="Description 1"><i class="icofont-eye"></i></a>
-                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Title 2" data-desc="Description 2"><i class="icofont-eye"></i></a>
-                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 2</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox"
-                                        title="Title 3" data-desc="Description 3" ><i class="icofont-eye"></i></a>
-                                    <a href="{{ url('details/1') }}" title="More Details"><i class="icofont-image"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        @include('layouts.portfolioPage')
         <section id="contact" class="contact">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>{{ __('app.contactPage') }}</h2>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="info-box">
-                            <i class="bx bx-map"></i>
-                            <h3>Our Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="info-box">
-                            <i class="bx bx-envelope"></i>
-                            <h3>Email Us</h3>
-                            <p>info@example.com<br>contact@example.com</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                        <div class="info-box ">
-                            <i class="bx bx-phone-call"></i>
-                            <h3>Call Us</h3>
-                            <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.contact')
         </section>
+    </section>
     </main>
     <footer id="footer">
         <div class="container">
@@ -294,6 +127,3 @@
 </body>
 
 </html>
-
-
-    

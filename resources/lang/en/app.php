@@ -15,7 +15,7 @@ return [
     'appName' => 'Portfolio',
     'homePage' => 'Home',
     'servicePage' => 'Services',
-    'portfolioPage' => 'Portfolio',
+    'portfolioPage' => 'Works',
     'aboutPage' => 'About Us',
     'contactPage' => 'Contact Us',
     'usefulLinks' => 'Useful Links',
@@ -23,5 +23,26 @@ return [
     'privacyPolicy' => 'Privacy policy',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    'dashboard' => 'Dashboard',
+    'describe_dashboard' => 'A good dashboard to display your statistics',
+    'khmer' => 'Khmer',
+    'english' => 'English',
+    'post' => 'Posts',
+    'postType' => 'Post Types',
+    'security' => 'Securities',
+    'user' => 'Users',
+
+    'account' => 'Account',
+    'changePassword' => 'Change Password',
+    'logout' => 'Logout',
+    'mainMenu' => 'MAIN MENU',
+    'list' => 'List',
+    'create' => 'Create',
+    'edit' => 'Edit',
+    'update' => 'Update',
+    'delete' => 'Delete',
+    'remove' => 'Remove',
+    'cancel' => 'Cancel'
 
 ];

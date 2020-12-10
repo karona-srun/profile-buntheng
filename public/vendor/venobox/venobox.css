@@ -1,13 +1,24 @@
 /* ------ venobox.css --------*/
 .blocktitle{
-    padding-right: 5px;
+    padding: 20px 15px;
     background: #fff;
     margin-left: -15px;
     padding-left: 25px;
+    overflow: scroll;
 }
-.blocktitle h1, .blocktitle p{
-    word-break: break-all;
+
+ .blocktitle p{
+    /* word-break: break-all; */
 }
+
+.blocktitle .lbtitle {
+font-size: 20px;
+font-weight: 600;
+}
+.blocktitle .lbdescription {
+
+}
+
 .vbox-overlay *, .vbox-overlay *:before, .vbox-overlay *:after{
     -webkit-backface-visibility: hidden;
     -webkit-box-sizing:border-box;

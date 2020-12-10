@@ -14,6 +14,12 @@ class Attachment extends Model
 
     protected $table = 'attachments';
 
-    protected $fillable = ['post_id','url'];
+    protected $fillable = ['post_id','name','path','size'];
+
+    
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 
 }
