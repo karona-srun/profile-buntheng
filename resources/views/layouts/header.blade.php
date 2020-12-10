@@ -22,7 +22,7 @@
 <header id="header">
     <div class="container">
         <div class="logo float-left">
-            <h1 class="text-light"><a href="index.html"><span>{{ __('app.appName') }}</span></a></h1>
+            <h1 class="text-light"><a href="/"><span>{{ __('app.appName') }}</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             {{-- <a href="#"><img src="img/favicon.png" alt="" class="img-fluid"></a> --}}
         </div>
@@ -30,14 +30,7 @@
             <ul>
                 <li class="active"><a href="#">{{ __('app.homePage') }}</a></li>
                 <li><a href="#about">{{ __('app.aboutPage') }}</a></li>
-                <li><a href="#services">{{ __('app.servicePage') }}</a></li>
-                <li><a href="#portfolio">{{ __('app.portfolioPage') }}</a></li>
-                <li class="drop-down"><a href="">Drop Down</a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li><a href="#">Drop Down 2</a></li>
-                    </ul>
-                </li>
+                <li><a href="#work">{{ __('app.portfolioPage') }}</a></li>
                 <li><a href="#contact">{{ __('app.contactPage') }}</a></li>
             </ul>
         </nav>

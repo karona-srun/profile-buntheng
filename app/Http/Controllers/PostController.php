@@ -39,8 +39,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $collection = PostType::where('is_public',1)->get();
-        return view('posts.create',['collection'=>$collection]);
+        $postype = PostType::where('is_published',1)->get();
+        return view('posts.create',['postype'=>$postype]);
     }
 
     /**
@@ -51,19 +51,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
         request()->validate([
             'title_en' => 'required',
-            'body_en' => 'required',
             'title_kh' => 'required',
-            'body_kh' => 'required',
-            'imageFile' => 'required',
-            'imageFile.*' => 'mimes:jpg,jpeg,png,gif',
+            'content_en' => 'required',
+            'content_kh' => 'required',
+            'post_type' => 'required',
+            'status' => 'required',
             'thumbnail'  =>  'required',
             'thumbnail.*' => 'mimes:jpg,jpeg,png,gif',
+            'filenames' => 'required',
+            'filenames.*' => 'mimes:jpg,jpeg,png,gif',
         ]);    
-        
-        $message=$request->body_en;
+
+        $message=$request->content_en;
 
         $dom = new \DomDocument();
         $dom->loadHtml('<?xml encoding="UTF-8">'.$message);   
@@ -84,7 +85,7 @@ class PostController extends Controller
         $body_en = $dom->saveHTML();
 
 
-        $message_kh=$request->body_kh;
+        $message_kh=$request->content_kh;
         $dom_kh = new \DomDocument();
         $dom_kh->loadHtml('<?xml encoding="UTF-8">'.$message_kh);   
         $images_kh = $dom_kh->getElementsByTagName('img');
@@ -103,43 +104,53 @@ class PostController extends Controller
         }
 
         $body_kh = $dom_kh->saveHTML();
-
-        if($thumbnail = $request->file('thumbnail')){
-            $thumbnailName = $thumbnail->getClientOriginalName();
-            $thumbnailPath = $thumbnail->storeAs('public/thumbnails', $thumbnailName);
-            //$thumbnail->move($thumbnailPath, $thumbnailName);
-        }
         
         $post = Post::create([
-            'post_type_id' => $request->post_type_id,
-            'thumbnail' => $thumbnailPath,
+            'post_type_id' => $request->post_type,
+            'thumbnail' => '',
             'title_en' => $request->title_en,
-            'body_en' =>  $body_en,
+            'content_en' =>  $body_en,
             'title_kh' => $request->title_kh,
-            'body_kh' =>  $body_kh,
-            'is_public' => 0,
+            'content_kh' =>  $body_kh,
+            'activate_code' => $request->activate_code,
+            'is_published' => $request->status,
             'created_by' => Auth::User()->id,
             'updated_by' => Auth::User()->id,
         ]);
         
-        if($imageFiles = $request->file('imageFile')){
-            foreach($imageFiles as $file) {
-                $name = $file->getClientOriginalName();
-                $mimetype = number_format($file->getSize()/1048576,3).' MB';
-                
-                $path = $file->storeAs('public/photos', $name);
+        if($imageFiles = $request->file('thumbnail')){
+                $name = $imageFiles->getClientOriginalName();
+                $mimetype = number_format($imageFiles->getSize()/1048576,3).' MB'; 
+                $path = $imageFiles->storeAs('public/thumbnails', $name);
                 if($path) {
                     $save   =   Attachment::create([
                     'post_id' => $post->id,
-                    'name' => $name,
+                    'name' => 'thumbnails',
                     'path' => $path,
                     'size' => $mimetype
                     ]);
                 }
             }
-        }
 
-        return redirect()->route('post.index')
+        if($request->hasfile('filenames'))
+         {
+            foreach($request->file('filenames') as $file)
+            {
+                $name = $file->getClientOriginalName();
+                $mimetype = number_format($file->getSize()/1048576,3).' MB'; 
+                $path = $file->storeAs('public/images', $name);
+                if($path) {
+                    $save   =   Attachment::create([
+                    'post_id' => $post->id,
+                    'name' => 'images',
+                    'path' => $path,
+                    'size' => $mimetype
+                    ]);
+                }
+            }
+         }
+
+        return redirect()->route('posts.index')
                         ->with('success','Post has been created successfully.');
     }
 
@@ -153,9 +164,10 @@ class PostController extends Controller
     {
         $post = Post::find($post->id);
         $attachemnts = Attachment::where('post_id',$post->id)->get();
-        return view('posts.show',['post' => $post,'attachemnts' => $attachemnts]);
+        $postype = PostType::get();
+        views($post)->record();
+        return view('posts.show',['post' => $post,'attachemnts' => $attachemnts, 'postype' => $postype]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -176,17 +188,8 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
-    {
-        request()->validate([
-            'title_en' => 'required',
-            'body_en' => 'required',
-            'title_kh' => 'required',
-            'body_kh' => 'required',
-            // 'thumbnail'  =>  'required|file|image|mimes:jpeg,png,gif,jpg|max:10248'
-        ]);    
-        
-        $message=$request->body_en;
+    public function update(Request $request, $id)
+    {$message=$request->content_en;
 
         $dom = new \DomDocument();
         $dom->loadHtml('<?xml encoding="UTF-8">'.$message);   
@@ -207,7 +210,7 @@ class PostController extends Controller
         $body_en = $dom->saveHTML();
 
 
-        $message_kh=$request->body_kh;
+        $message_kh=$request->content_kh;
         $dom_kh = new \DomDocument();
         $dom_kh->loadHtml('<?xml encoding="UTF-8">'.$message_kh);   
         $images_kh = $dom_kh->getElementsByTagName('img');
@@ -224,31 +227,65 @@ class PostController extends Controller
                 $image->setAttribute('src', Storage::disk('public')->url($path));
             }
         }
-        $body_kh = $dom_kh->saveHTML();
 
-        $post = Post::find($post->id);
-        $post->post_type_id = $request->post_type_id;
+        $body_kh = $dom_kh->saveHTML();
+        
+
+        $post = Post::find($id);
+        $post->post_type_id = $request->postType;
         $post->title_en = $request->title_en;
         $post->title_kh = $request->title_kh;
-        $post->body_en = $body_en;
-        $post->body_kh = $body_kh;
-        $post->is_public = $request->status;
+        $post->content_en = $body_en;
+        $post->content_kh = $body_kh;
+        $post->activate_code = $request->activate_code;
+        $post->is_published = $request->status;
         $post->updated_by = Auth::User()->id;
         $post->save();
 
+        $attachemnts = Attachment::where(['name'=>'thumbnails','post_id'=> $id])->first();
+        if($imageFiles = $request->file('thumbnail')){
+                $name = $imageFiles->getClientOriginalName();
+                $mimetype = number_format($imageFiles->getSize()/1048576,3).' MB'; 
+                $path = $imageFiles->storeAs('public/thumbnails', $name);
+                if($attachemnts->path){
+                    $this->deleteFile($attachemnts->path);
+                }
+                if($path) {
+                    $save = Attachment::create([
+                    'post_id' => $post->id,
+                    'name' => 'thumbnails',
+                    'path' => $path,
+                    'size' => $mimetype
+                    ]);
+                }
+            }
 
-        $data = $request->input('thumbnail');
-        $photo = $request->file('thumbnail')->getClientOriginalName();
-        $destination = base_path() . '/public/uploads';
-        $url = $request->file('thumbnail')->move($destination, $photo);
-
-        Attachment::create([
-            'post_id' => $post->id,
-            'url' => $url
-        ]);
+        $attachemnts = Attachment::where(['name' => 'images','post_id' => $id])->get();
+        if($request->hasfile('filenames'))
+         {
+            foreach($request->file('filenames') as $file)
+            {
+                $name = $file->getClientOriginalName();
+                $mimetype = number_format($file->getSize()/1048576,3).' MB'; 
+                $path = $file->storeAs('public/images', $name);
+                foreach($attachemnts as $file)
+                {
+                    if($file->path != $request->filenames ){
+                        $this->deleteFile($file->path);
+                    }
+                }
+                if($path) {
+                    $save = Attachment::create([
+                    'post_id' => $post->id,
+                    'name' => 'images',
+                    'path' => $path,
+                    'size' => $mimetype
+                    ]);
+                }
+            }
+         }
         
-        
-        return redirect()->route('post.index')
+        return redirect()->route('posts.index')
                         ->with('success','Post has been created successfully.');
     }
 
@@ -260,6 +297,34 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post = Post::find($post->id);
+        $post->delete();
+
+        return redirect('/posts')->with('error', 'Post has been deleted successfully!');
+    }
+
+    public function deleteImage($id){
+        $attachemnt = Attachment::find($id);
+        $this->deleteFile($attachemnt->path);
+        $attachemnt->delete();
+
+        return back()->with('success', 'The image has been deleted successfully!');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $path
+     * @return void
+     */
+    public function deleteFile($path){
+        if(file_exists(Storage::url($path))){
+            try{
+                unlink(Storage::url($path));
+            }catch(\Exception $e){
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
+        }
+        return;
     }
 }

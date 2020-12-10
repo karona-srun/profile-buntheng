@@ -322,8 +322,8 @@
                                     '<img src="' + dest + '" class="vbox-figlio" style="padding: 0px;">' +
                                     '</div>' +
                                     '<div class="col-md-3 blocktitle">' +
-                                    '<h6>' + title + '</h6>' +
-                                    '<p>' + description + '</p>' +
+                                    '<h6 class="lbtitle">' + title + '</h6>' +
+                                    '<p class="lbdescription">' + description + '</p>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>');
@@ -493,8 +493,8 @@
                                     '<img src="' + dest + '" class="vbox-figlio" style="padding: 0px;">' +
                                     '</div>' +
                                     '<div class="col-md-3 blocktitle">' +
-                                    '<h6>' + title + '</h6>' +
-                                    '<p>' + description + '</p>' +
+                                    '<h6 class="lbtitle">' + title + '</h6>' +
+                                    '<p class="lbdescription">' + description + '</p>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>');

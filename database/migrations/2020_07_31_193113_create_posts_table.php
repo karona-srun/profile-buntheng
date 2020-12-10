@@ -19,9 +19,10 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('title_en');
             $table->string('title_kh');
-            $table->longText('body_en')->nullable();
-            $table->longText('body_kh')->nullable();
-            $table->tinyInteger('is_public')->default('0')->comment('0 is private');
+            $table->tinyInteger('is_published')->default('0')->comment('0 is published');
+            $table->string('activate_code')->nullable();
+            $table->longText('content_en')->nullable();
+            $table->longText('content_kh')->nullable();
             $table->string('created_by');
             $table->string('updated_by');
             $table->timestamps();

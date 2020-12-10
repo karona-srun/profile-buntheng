@@ -24,4 +24,24 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'dashboard' => 'ផ្ទាំងសង្ខេបព័ត៏មាន',
+    'describe_dashboard' => 'ផ្ទាំងគ្រប់គ្រងដ៏ល្អដើម្បីបង្ហាញស្ថិតិរបស់អ្នក',
+    'english' => 'អង់គ្លេស',
+    'khmer' => 'ខ្មែរ',
+    'post' => 'បង្ហោះពត័មាន',
+    'postType' => 'ប្រភេទពត័មាន',
+    'security' => 'សុវត្តិភាព',
+    'user' => 'អ្នកប្រើប្រាស់',
+
+    'account' => 'គណនី',
+    'changePassword' => 'ផ្លាស់ប្តូរពាក្យសំងាត់',
+    'logout' => 'ចាកចេញ',
+    'mainMenu' => 'បញ្ជី​ដើម',
+    'list' => 'បញ្ជី',
+    'create' => 'បង្កើត',
+    'edit' => 'កំណែ',
+    'update' => 'ធ្វើបច្ចុប្បន្នភាព',
+    'delete' => 'លុបចោល',
+    'remove' => 'លុប',
+    'cancel' => 'បិទ'
 ];
