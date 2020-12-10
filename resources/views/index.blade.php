@@ -100,7 +100,7 @@
     <footer id="footer">
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Mamba</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Portfolio</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 Designed by <a href="https://facebook.com/karona.srun">Karona Srun</a>
