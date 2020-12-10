@@ -13,7 +13,7 @@
 <div class="container text-center pt-32">
     <h1 class='error-title'>403</h1>
     <p>You're not allowed in here</p>
-    <a href="index.html" class='btn btn-primary'>Go Home</a>
+    <a href="{{ url()->previous() }}" class='btn btn-primary'>Go Home</a>
 </div>
 
         <div class="footer pt-32">

@@ -63,7 +63,7 @@
                     </div>
 
                     <!-- Slide 3 -->
-                    <div class="carousel-item" style="background-image: url('img/slide/slide-3.jpg');">
+                <div class="carousel-item" style="background-image: url('{{ Storage::url('public/slideimages/pexels-photo-5333590.jpeg')}}');">
                         <div class="carousel-container">
                             <div class="carousel-content container">
                                 <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>

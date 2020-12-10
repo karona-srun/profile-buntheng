@@ -18,7 +18,9 @@
             </div>
         </div>
     </div>
-    @include('flash-message')
+    <div class="row">
+        @include('flash-message')
+    </div>
     <section class="section">
         <div class="card">
             <div class="card-body">

@@ -42,6 +42,6 @@ class Post extends Model implements Viewable
 
     public function images($postId)
     {
-        return Attachment::where(['post_id' => $postId,'name'=>'images'])->get(); 
+        return Attachment::where(['post_id' => $postId,'name'=>'posts'])->get(); 
     }
 }
