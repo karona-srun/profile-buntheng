@@ -94,13 +94,13 @@
                             <a href="#" data-toggle="dropdown"
                                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="avatar mr-1">
-                                    <img src="{{ asset('vendor_be/images/avatar/avatar-s-1.png') }}" alt="" srcset="">
+                                    <img src="{{ asset('vendor_be/images/avatar/avatar-1.png') }}" alt="" srcset="">
                                 </div>
-                                <div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
+                                <div class="d-none d-md-block d-lg-inline-block">{{ Auth::user() == '' ? '' : Auth::user()->name }}</div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> {{ __('app.account')}}</a>
-                                <a class="dropdown-item" href="#"><i data-feather="key"></i> {{ __('app.changePassword')}}</a>
+                                <a class="dropdown-item" href="{{ url('users',Auth::user()->id) }}"><i data-feather="user"></i> {{ __('app.account')}}</a>
+                            <a class="dropdown-item" href="{{ url('users/edit-password',Auth::user()->id) }}"><i data-feather="key"></i> {{ __('app.changePassword')}}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -122,10 +122,6 @@
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-left">
                         <p>2020 &copy; Prortfolio</p>
-                    </div>
-                    <div class="float-right">
-                        <p>Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">Ahmad Saugi</a></p>
                     </div>
                 </div>
             </footer>
