@@ -30,6 +30,7 @@ return [
     'english' => 'English',
     'post' => 'Posts',
     'postType' => 'Post Types',
+    'slideImage' => 'Slide Images',
     'security' => 'Securities',
     'user' => 'Users',
 

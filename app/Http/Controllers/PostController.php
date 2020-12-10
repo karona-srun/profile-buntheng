@@ -138,11 +138,11 @@ class PostController extends Controller
             {
                 $name = $file->getClientOriginalName();
                 $mimetype = number_format($file->getSize()/1048576,3).' MB'; 
-                $path = $file->storeAs('public/images', $name);
+                $path = $file->storeAs('public/posts', $name);
                 if($path) {
                     $save   =   Attachment::create([
                     'post_id' => $post->id,
-                    'name' => 'images',
+                    'name' => 'posts',
                     'path' => $path,
                     'size' => $mimetype
                     ]);
@@ -250,38 +250,28 @@ class PostController extends Controller
                 if($attachemnts->path){
                     $this->deleteFile($attachemnts->path);
                 }
-                if($path) {
-                    $save = Attachment::create([
+                    Attachment::create([
                     'post_id' => $post->id,
                     'name' => 'thumbnails',
                     'path' => $path,
                     'size' => $mimetype
                     ]);
-                }
             }
 
-        $attachemnts = Attachment::where(['name' => 'images','post_id' => $id])->get();
+        $attachemnts = Attachment::where(['name' => 'posts','post_id' => $id])->get();
         if($request->hasfile('filenames'))
          {
             foreach($request->file('filenames') as $file)
             {
                 $name = $file->getClientOriginalName();
                 $mimetype = number_format($file->getSize()/1048576,3).' MB'; 
-                $path = $file->storeAs('public/images', $name);
-                foreach($attachemnts as $file)
-                {
-                    if($file->path != $request->filenames ){
-                        $this->deleteFile($file->path);
-                    }
-                }
-                if($path) {
-                    $save = Attachment::create([
+                $path = $file->storeAs('public/posts', $name);
+                Attachment::create([
                     'post_id' => $post->id,
-                    'name' => 'images',
+                    'name' => 'posts',
                     'path' => $path,
                     'size' => $mimetype
-                    ]);
-                }
+                ]);
             }
          }
         
@@ -295,11 +285,15 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post = Post::find($post->id);
+        $post = Post::find($id);
         $post->delete();
-
+        $attachments = Attachment::where(['name' => 'posts','post_id' => $id])->get();
+        foreach($attachments AS $item){
+            Storage::delete($item->path); 
+            $item->delete();
+        }
         return redirect('/posts')->with('error', 'Post has been deleted successfully!');
     }
 
@@ -318,9 +312,9 @@ class PostController extends Controller
      * @return void
      */
     public function deleteFile($path){
-        if(file_exists(Storage::url($path))){
+        if(Storage::exists($path)){
             try{
-                unlink(Storage::url($path));
+                Storage::delete($path);
             }catch(\Exception $e){
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }

@@ -14,7 +14,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        # code...
         $posttype = PostType::where('is_published',1)->get();
         $post = Post::where('is_published',1)->get();
         return view('index',['posttype' => $posttype,'post' => $post]);

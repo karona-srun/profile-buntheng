@@ -83,7 +83,7 @@
             display: block;
         }
         .image-answer:hover .confirmation{
-            display: none;
+            display: block;
         }
 
     </style>
@@ -227,8 +227,7 @@
                                        
                                         <a class="btn btn-danger confirmation float-right" href="#"
                                                         data-toggle="modal" data-target="#small-modal"
-                                                        data-id="{{ $item->id }}"><i
-                                                        data-feather="trash"></i> Delete Image</a>
+                                                        data-id="{{ $item->id }}"> Delete Image</a>
                                     </div>
                                 </div>  
                                 @endforeach
@@ -279,7 +278,7 @@
                 $('.update-button').show();
                 $('input[type=text],textarea, *').prop('readonly', true);
                 $('#add_more').css('display','none');
-                $('.confirmation').css('display','none');
+                // $('.confirmation').css('display','none');
             })
 
             $('.update-button').click(function(event) {
@@ -287,7 +286,7 @@
                 $('.save-button').show();
                 $('input[type=text],textarea, *').prop('readonly', false);
                 $('#add_more').css('display','inline');
-                $('.confirmation').css('display','inline');
+                // $('.confirmation').css('display','inline');
             })
 
             $('.activate-code').click(function() {
@@ -326,7 +325,7 @@
                     '<div class="">' +
                     '<input type="image" class="add_image photo-thumbnail" src="{{ asset('img/placeholder.png') }}">'+
                     '<input type="file" class="select_file" accept="image/*" name="filenames['+i+']" id="file-0"style="display: none;">' +
-                    '<button class="btn btn-danger remove-img remove_answer float-right" type="button"><iclass="fldemo glyphicon glyphicon-remove"></iclass=>Remove Image</button>' +
+                    '<button class="btn btn-danger remove-img remove_answer float-right" type="button"><iclass="fldemo glyphicon glyphicon-remove"></iclass=>Delete Image</button>' +
                     '</div>' +
                     '</div>';
                 //append new answers

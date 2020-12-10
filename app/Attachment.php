@@ -22,4 +22,9 @@ class Attachment extends Model
         return $this->belongsTo(Post::class);
     }
 
+    public function images()
+    {
+        return Attachment::where('name','=','slideimages')->get(); 
+    }
+
 }

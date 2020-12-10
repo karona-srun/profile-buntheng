@@ -47,6 +47,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('/slide-images') }}" class='sidebar-link'>
+                                <i data-feather="image" width="20"></i>
+                            <span>{{ __('app.slideImage')}}</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="user" width="20"></i>
