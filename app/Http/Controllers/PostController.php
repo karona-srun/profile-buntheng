@@ -165,7 +165,6 @@ class PostController extends Controller
         $post = Post::find($post->id);
         $attachemnts = Attachment::where('post_id',$post->id)->get();
         $postype = PostType::get();
-        views($post)->record();
         return view('posts.show',['post' => $post,'attachemnts' => $attachemnts, 'postype' => $postype]);
     }
     /**

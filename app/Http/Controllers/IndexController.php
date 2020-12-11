@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{User,Post, PostType};
+use App\{User,Post, PostType, SlideImages};
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -14,9 +14,10 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $slides = SlideImages::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
         $post = Post::where('is_published',1)->get();
-        return view('index',['posttype' => $posttype,'post' => $post]);
+        return view('index',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 
     /**
@@ -26,11 +27,11 @@ class IndexController extends Controller
      */
     public function details($id)
     {
+        $slides = SlideImages::where('is_published',1)->get();
         $posts = Post::find($id);
         $post = Post::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        views($posts)->record();
-        return view('portfolio-details',['posttype' => $posttype,'post' => $post, 'posts' => $posts]);
+        return view('portfolio-details',['posttype' => $posttype,'post' => $post, 'posts' => $posts,'slides'=>$slides]);
     }
 
     /**
@@ -41,11 +42,11 @@ class IndexController extends Controller
      */
     public function showWork($id)
     {
+        $slides = SlideImages::where('is_published',1)->get();
         $posts = Post::find($id);
         $post = Post::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        views($posts)->record();
-        return view('posts.show_work',['posttype' => $posttype,'post' => $post, 'posts' => $posts]);
+        return view('posts.show_work',['posttype' => $posttype,'post' => $post, 'posts' => $posts ,'slides'=>$slides]);
     }
 
     public function multifileupload()

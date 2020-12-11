@@ -3,14 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use App\Http\Traits\Uuids;
 use App\Attachment;
 
-class Post extends Model implements Viewable
+class Post extends Model
 {
-    use InteractsWithViews;
     use Uuids;
     protected $keyType = 'string';
     public $incrementing = false;

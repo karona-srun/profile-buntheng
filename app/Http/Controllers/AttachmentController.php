@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Attachment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Image;
 
 class AttachmentController extends Controller
 {

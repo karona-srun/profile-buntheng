@@ -27,5 +27,5 @@ Route::delete('posts/delete-image/{id}','PostController@deleteImage');
 Route::resource('users','UserController');
 Route::get('users/edit-password/{id}','UserController@editPassword');
 Route::post('users/change-password/{id}','UserController@changePassword');
-Route::resource('slide-images','AttachmentController');
+Route::resource('slide-images','SlideImagesController');
 

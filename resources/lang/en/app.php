@@ -44,6 +44,11 @@ return [
     'update' => 'Update',
     'delete' => 'Delete',
     'remove' => 'Remove',
-    'cancel' => 'Cancel'
+    'cancel' => 'Cancel',
 
+    'our_address' => 'Our Address',
+    'email_us' => 'Email Us',
+    'call_us' => 'Call Us',
+    'copyright'=>'© Copyright Portfolio. All Rights Reserved.',
+    'credits' => 'Development by <a href="https://facebook.com/karona.srun">Karona Srun</a>.'
 ];

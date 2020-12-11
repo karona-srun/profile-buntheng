@@ -73,18 +73,6 @@
             padding: 5px 15px 5px 15px;
         }
 
-        .confirmation {
-            display: none;
-            margin-top: -120px;
-            position: relative;
-            margin-right: 48px;
-            padding: 5px 15px 5px 15px;
-        }
-
-        .image-answer:hover .confirmation {
-            display: block;
-        }
-
     </style>
 @endsection
 @section('content')
@@ -106,39 +94,28 @@
             </div>
         </div>
     </div>
+    <br>
     <section class="section">
-        <div class="col-md-12">
-            <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Slide Images</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                                <div class="row add-rows">
-                                    @foreach ($post as $i => $item)
-                                        <div class="col-lg-3 col-md-6 col-sm-6 image-answer mb-4">
-                                            <div class=" float-none">
-                                                <input type="image" class="add_image photo-thumbnail"
-                                                    src="{{ Storage::url($item->path) }}">
-                                                <input type="hidden" name="filenames[{{ $i }}]"
-                                                    value="{{ Storage::url($item->path) }}">
-                                                <input type="file" class="select_file" accept="image/*"
-                                                    name="filenames[{{ $i }}]" id="file-0" style="display: none;"
-                                                    value="{{ Storage::url($item->path) }}">
-
-                                                <a class="btn btn-danger confirmation float-right" href="#"
-                                                    data-toggle="modal" data-target="#small-modal"
-                                                    data-id="{{ $item->id }}"><i data-feather="trash"></i> Delete Image</a>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
+        <div class="row">
+            @foreach ($post as $i => $item)
+                <div class="col-xl-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-content">
+                            <img class="card-img-top img-fluid" src="{{ Storage::url($item->path) }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ Session::get('locale') == 'kh' ? $item->title_kh : $item->title_en }}</h4>
+                                <p class="card-text">
+                                    {{ Session::get('locale') == 'kh' ? Illuminate\Support\Str::limit($item->content_kh, 200) : Illuminate\Support\Str::limit($item->content_en, 200) }}
+                                </p>
+                                <a class="btn btn-primary block" href="{{ route('slide-images.show', $item->id) }}">Edit</a>
+                                <a class="btn btn-danger block confirmation ml-3" href="#" data-toggle="modal"
+                                    data-target="#small-modal" data-id="{{ $item->id }}">Delete</a>
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
+            @endforeach
         </div>
-
         <div class="modal fade text-left modal-borderless fade" tabindex="-1" role="dialog" id="small-modal"
             style="display: none; padding-left: 0px;" aria-modal="true">
             <div class="modal-dialog modal-sm" role="document">

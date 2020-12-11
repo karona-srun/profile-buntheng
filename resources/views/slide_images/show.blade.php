@@ -107,7 +107,8 @@
     <section class="section">
         <div class="col-md-12">
             <div class="card">
-                <form action="{{ route('slide-images.store') }}" method="post" enctype="multipart/form-data" id="form1">
+                <form action="{{ route('slide-images.update', $post->id) }}" method="post" enctype="multipart/form-data" id="form1">
+                    @method('PATCH')
                     @csrf
                     <div class="card-header">
                         <h4 class="card-title">Slide Images</h4>
@@ -119,20 +120,24 @@
                         </div>
                     </div>
 
- <div class="card-body">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                               
+
                                 <div class="form-group">
-                                    <label for="helperText">THUMBNAIL [Maximum Size: 1900px × 1080px]</label>
+                                    <label for="helperText">THUMBNAIL [MAXIMUM SIZE: 1900PX × 1080PX]</label>
                                     <div id='img_container'>
-                                        <img id="preview" src="{{ asset('img/placeholder.png') }}" alt="your image"
-                                            title='' />
+                                        <img id="preview" src="{{ Storage::url($post->path) }}" alt="thumbnail">
+                                        @if (!asset($post->path))
+                                            <img id="preview"
+                                                src="https://webdevtrick.com/wp-content/uploads/preview-img.jpg"
+                                                alt="your image" title='' />
+                                        @endif
                                     </div>
                                     <div class="input-group">
                                         <input type="file" id="inputGroupFile01" name="thumbnail"
                                             class="imgInp custom-file-input" aria-describedby="inputGroupFileAddon01"
-                                            accept="image/*" value="">
+                                            accept="image/*" value="{{ Storage::url($post->path) }}">
                                         <label class="form-control custom-file-label"
                                             for="inputGroupFile01">Thumbnail</label>
                                         <button class="btn btn-primary" type="button" id="chooseThumbnail">Choose
@@ -142,21 +147,21 @@
                                 </div>
                                 <div class="form-group" style="margin-top: -6px !important;">
                                     <label for="exampleFormControlTextarea1" class="form-label">CONTENT (AS English)</label>
-                                    <textarea class="form-control" name="content_en" rows="3"></textarea>
+                                <textarea class="form-control" name="content_en" rows="3">{{ $post->content_en}}</textarea>
                                     <p><small class="text-red">{{ $errors->first('content_en') }}</small></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="basicInput">Title (AS ENGLISH)</label>
                                     <input type="text" class="form-control" name="title_en" placeholder="Enter title"
-                                        value="">
+                                        value="{{ $post->title_en}}">
                                     <p><small class="text-red">{{ $errors->first('title_en') }}</small></p>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Title (AS KHMER)</label>
                                     <input type="text" class="form-control" name="title_kh" placeholder="Enter title"
-                                        value="">
+                                        value="{{ $post->title_kh}}">
                                     <p><small class="text-red">{{ $errors->first('title_kh') }}</small></p>
                                 </div>
                                 <br><br>
@@ -171,7 +176,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1" class="form-label">CONTENT (AS KHMER)</label>
-                                    <textarea class="form-control" name="content_kh" rows="3"></textarea>
+                                    <textarea class="form-control" name="content_kh" rows="3">{{ $post->content_kh}}</textarea>
                                     <p><small class="text-red">{{ $errors->first('content_kh') }}</small></p>
                                 </div>
                             </div>

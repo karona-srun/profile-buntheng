@@ -12,14 +12,14 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
         rel="stylesheet">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/icofont/icofont.min.css" rel="stylesheet">
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="vendor/venobox/venobox.css" rel="stylesheet">
-    <link href="vendor/owl.carousel/owl.carousel.min.css" rel="stylesheet">
-    <link href="vendor/aos/aos.css" rel="stylesheet">
-    <link href="css/stylefe.css" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/icofont/icofont.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/venobox/venobox.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/owl.carousel/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylefe.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -31,51 +31,17 @@
                 <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
                 <div class="carousel-inner" role="listbox">
-
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active" style="background-image: url('img/slide/slide-1.jpg');">
-                        <div class="carousel-container">
-                            <div class="carousel-content container">
-                                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Mamba</span></h2>
-                                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
-                                    aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                                    mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
-                                    vel. Minus et tempore modi architecto.</p>
-                                <a href="#about"
-                                    class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                    @foreach ($slides as $i => $slide)
+                        <div class="carousel-item {{ $i == 0 ?'active':''}}"
+                            style="background-image: url('{{ Storage::url($slide->path) }}');">
+                            <div class="carousel-container">
+                                <div class="carousel-content container">
+                                <h2 class="animate__animated animate__fadeInDown">{{ Session::get('locale') == 'kh' ? $slide->title_kh : $slide->title_en }}</h2>
+                                    <p class="animate__animated animate__fadeInUp">{{ Session::get('locale') == 'kh' ? $slide->content_kh : $slide->content_en }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-item" style="background-image: url('img/slide/slide-2.jpg');">
-                        <div class="carousel-container">
-                            <div class="carousel-content container">
-                                <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
-                                    aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                                    mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
-                                    vel. Minus et tempore modi architecto.</p>
-                                <a href="#about"
-                                    class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url('{{ Storage::url('public/slideimages/pexels-photo-5333590.jpeg')}}');">
-                        <div class="carousel-container">
-                            <div class="carousel-content container">
-                                <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
-                                    aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                                    mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
-                                    vel. Minus et tempore modi architecto.</p>
-                                <a href="#about"
-                                    class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
@@ -95,7 +61,7 @@
         <section id="contact" class="contact">
             @include('layouts.contact')
         </section>
-    </section>
+        </section>
     </main>
     <footer id="footer">
         <div class="container">
@@ -111,18 +77,18 @@
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="vendor/php-email-form/validate.js"></script>
-    <script src="vendor/jquery-sticky/jquery.sticky.js"></script>
-    <script src="vendor/venobox/venobox.js"></script>
-    <script src="vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="vendor/counterup/counterup.min.js"></script>
-    <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="vendor/aos/aos.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery.easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-sticky/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('vendor/venobox/venobox.js') }}"></script>
+    <script src="{{ asset('vendor/waypoints/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('vendor/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('vendor/owl.carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
 </body>
 
