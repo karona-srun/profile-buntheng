@@ -18,7 +18,7 @@ Route::get('/details/{id}','IndexController@details');
 Route::get('posts/show-work/{id}','IndexController@showWork');
 
 Route::get('lang/{locale}', 'LocalizationController@index');
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('post-types','PostTypeController');
