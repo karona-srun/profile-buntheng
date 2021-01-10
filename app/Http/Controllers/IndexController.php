@@ -16,7 +16,7 @@ class IndexController extends Controller
     {
         $slides = SlideImages::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        $post = Post::where('is_published',1)->get();
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
         return view('index',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 
@@ -29,7 +29,7 @@ class IndexController extends Controller
     {
         $slides = SlideImages::where('is_published',1)->get();
         $posts = Post::find($id);
-        $post = Post::where('is_published',1)->get();
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);;
         $posttype = PostType::where('is_published',1)->get();
         return view('portfolio-details',['posttype' => $posttype,'post' => $post, 'posts' => $posts,'slides'=>$slides]);
     }
@@ -68,5 +68,17 @@ class IndexController extends Controller
         else {
             return response()->json('error', 400);
         }
+    }
+
+    public function search(Request $request)
+    {
+        $slides = SlideImages::where('is_published',1)->get();
+        $posttype = PostType::where('is_published',1)->get();
+        $post = Post::where('is_published',1)
+                    ->where('title_en', 'LIKE', "%{$request->q}%") 
+                    ->orWhere('title_kh', 'LIKE', "%{$request->q}%")
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(1);
+        return view('index',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 }

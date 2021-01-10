@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Buntheng') }}</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
@@ -71,7 +71,7 @@
                 {{ __('app.copyright')}}
             </div>
             <div class="credits">
-                {{ __('app.credits')}}
+                {{ __('app.developer')}} <a href="https://facebook.com/karona.srun" target="_blink">{{ __('app.credits')}}</a>
             </div>
         </div>
     </footer>

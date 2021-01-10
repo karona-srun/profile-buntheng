@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul id="portfolio-flters">
-                    <li data-filter="*" class="filter-active">All</li>
+                    <li data-filter="*" class="filter-active filter-all">{{ __('app.all')}}</a></li>
                     @foreach ($posttype as $item)
                         <li
                             data-filter=".filter-{{ Session::get('locale') == 'kh' ? $item->post_type_kh : $item->post_type_en }}">
@@ -45,6 +45,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="d-flex justify-content-center">
+            {!! $post->links() !!}
         </div>
     </div>
 </section>

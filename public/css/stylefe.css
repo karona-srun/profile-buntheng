@@ -303,7 +303,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .mobile-nav-toggle {
   position: fixed;
   right: 15px;
-  top: 20px;
+  top: 70px;
   z-index: 9998;
   border: 0;
   background: none;
@@ -313,6 +313,32 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   line-height: 1;
   cursor: pointer;
   text-align: right;
+}
+
+
+@media(max-width: 600px) {
+  .mobile-nav-toggle {
+      position: fixed;
+      right: 15px;
+      top: 90px;
+      z-index: 9998;
+      border: 0;
+      background: none;
+      font-size: 24px;
+      transition: all 0.4s;
+      outline: none !important;
+      line-height: 1;
+      cursor: pointer;
+      text-align: right;
+  }
+  .row-form-search{
+    margin-left: 13px;
+  }
+  .icofont-close{
+    top: 10px !important;
+    position: fixed;
+    right: 10px;
+  }
 }
 
 .mobile-nav-toggle i {
@@ -1480,4 +1506,26 @@ section {
 
 #footer .credits a {
   color: #9eccf4;
+}
+
+.row-form-search{
+  margin-top: 5px;
+}
+
+.input-search{
+    padding: 10px;
+}
+
+.button-search{
+    padding: 6px 13px;
+    border-radius: 0 5px 5px 0;
+    background: #256397;
+}
+
+.page-link {
+  margin-left: 5px;
+  border: 0px solid #787f86 !important;
+}
+.page-item.active .page-link {
+    background-color: #438bca !important;
 }

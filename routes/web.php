@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','IndexController@index');
 Route::get('/details/{id}','IndexController@details');
 Route::get('posts/show-work/{id}','IndexController@showWork');
+Route::get('search','IndexController@search');
 
 Route::get('lang/{locale}', 'LocalizationController@index');
 Auth::routes(['register' => false]);

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Buntheng') }}</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
     <link href="img/favicon.png" rel="icon">
@@ -66,10 +66,10 @@
     <footer id="footer">
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Portfolio</span></strong>. All Rights Reserved
+                {{ __('app.copyright')}}
             </div>
             <div class="credits">
-                Designed by <a href="https://facebook.com/karona.srun">Karona Srun</a>
+                {{ __('app.developer')}} <a href="https://facebook.com/karona.srun" target="_blink">{{ __('app.credits')}}</a>
             </div>
         </div>
     </footer>
@@ -89,7 +89,18 @@
     <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-
+    <script>
+        $(document).ready(function(){
+            $('.button-search').click(function(){ 
+                //$("#form-search").submit();
+                event.preventDefault();
+                
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('data-id')).offset().top - 70,
+                    },800,'linear');
+            });
+        })
+    </script>
 </body>
 
 </html>

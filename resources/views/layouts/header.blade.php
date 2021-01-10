@@ -26,8 +26,21 @@
             <!-- Uncomment below if you prefer to use an image logo -->
             {{-- <a href="#"><img src="img/favicon.png" alt="" class="img-fluid"></a> --}}
         </div>
+        
         <nav class="nav-menu float-right d-none d-lg-block">
             <ul>
+                <li>
+                    <div class="row row-form-search">
+                        <form class="navbar-form" id="form-search" role="search" method="GET" action="{{ url('search') }}">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-search" name="q" value="{{ request()->q }}" placeholder="{{ __('app.search')}}" name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary button-search" data-id="#work" type="button"><i class="icofont-search"></i></button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </li>
                 <li class="active"><a href="#">{{ __('app.homePage') }}</a></li>
                 <li><a href="#about">{{ __('app.aboutPage') }}</a></li>
                 <li><a href="#work">{{ __('app.portfolioPage') }}</a></li>

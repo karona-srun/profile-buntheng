@@ -15,7 +15,7 @@ return [
     'appName' => 'Portfolio',
     'homePage' => 'ទំព័រដើម',
     'servicePage' => 'សេវាកម្ម',
-    'portfolioPage' => 'ស្នាដៃរបស់ខ្ញូំ',
+    'portfolioPage' => 'ស្នាដៃរបស់ខ្ញុំ',
     'aboutPage' => 'អំពីយើងខ្ញុំ',
     'contactPage' => 'ទំនាក់ទំនង',
     'usefulLinks' => 'តំណ​ភ្ជាប់​',
@@ -45,10 +45,13 @@ return [
     'delete' => 'លុបចោល',
     'remove' => 'លុប',
     'cancel' => 'បិទ',
+    'search' => 'ស្វែងរក...',
+    'all' => 'ទាំងអស់',
 
     'our_address' => 'អាសយដ្ឋាន',
     'email_us' => 'អ៊ីមែល',
     'call_us' => 'ទំនាក់ទំនង',
     'copyright'=>'©រក្សាសិទ្ធិ Portfolio ​រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង',
-    'credits' => "ការអភិវឌ្ឍដោយ ស្រ៊ុន ករណា"
+    'developer' => 'ការអភិវឌ្ឍដោយ',
+    'credits' => "ស្រ៊ុន ករណា"
 ];

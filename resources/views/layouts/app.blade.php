@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Buntheng') }}</title>
     <link rel="stylesheet" href="{{ asset('vendor_be/vendors/choices.js/choices.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor_be/css/bootstrap.css') }}">
     @yield('css')

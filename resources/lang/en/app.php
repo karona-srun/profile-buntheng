@@ -45,10 +45,13 @@ return [
     'delete' => 'Delete',
     'remove' => 'Remove',
     'cancel' => 'Cancel',
+    'search' => 'Search...',
+    'all' => 'All',
 
     'our_address' => 'Our Address',
     'email_us' => 'Email Us',
     'call_us' => 'Call Us',
     'copyright'=>'© Copyright Portfolio. All Rights Reserved.',
-    'credits' => 'Development by <a href="https://facebook.com/karona.srun">Karona Srun</a>.'
+    'developer' => 'Developer by',
+    'credits' => ' Karona Srun.'
 ];
