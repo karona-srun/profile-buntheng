@@ -98,6 +98,13 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   color: #428bca;
 }
 
+.social-links a{
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -106,7 +113,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   transition: all 0.5s;
   transition: all 0.5s;
   padding: 10px 0;
-  background: #fff;
+  color: #fff;
+  background: #000000;
   z-index: 997;
 }
 
@@ -135,6 +143,22 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   max-height: 40px;
 }
 
+/* Slide custom button */
+.carousel-indicators li{
+  display: none;
+}
+.carousel-control-next,
+.carousel-control-prev{
+  display: none;
+}
+/* End */
+.telephone{
+      margin-left: -55px;
+      margin-top: -13px;
+}
+.country{
+  margin-left: -50px;
+}
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -154,7 +178,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #5c768d;
+  color: #fff;
+  font-weight: 700;
   padding: 12px 15px;
   transition: 0.3s;
   font-size: 14px;
@@ -303,7 +328,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .mobile-nav-toggle {
   position: fixed;
   right: 15px;
-  top: 70px;
+  top: 20px;
   z-index: 9998;
   border: 0;
   background: none;
@@ -320,7 +345,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   .mobile-nav-toggle {
       position: fixed;
       right: 15px;
-      top: 90px;
+      top: 20px;
       z-index: 9998;
       border: 0;
       background: none;
@@ -342,7 +367,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .mobile-nav-toggle i {
-  color: #5c768d;
+  color: #fff;
 }
 
 .mobile-nav-overly {
@@ -1359,7 +1384,7 @@ section {
 }
 
 #footer {
-  background: #587187;
+  background: #000000;
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
@@ -1493,14 +1518,17 @@ section {
 }
 
 #footer .copyright {
-  text-align: center;
+  text-align: left;
   padding-top: 30px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 #footer .credits {
   padding-top: 10px;
-  text-align: center;
-  font-size: 13px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
   color: #fff;
 }
 
@@ -1514,12 +1542,20 @@ section {
 
 .input-search{
     padding: 10px;
+    border-radius: 20px 0 0 20px;
+    border-bottom: 1px solid #000000 !important;
+    border-top: 1px solid #000000 !important;
+    border-left: 1px solid #000000 !important;
+    border-right: 1px solid #fff !important;
 }
 
 .button-search{
-    padding: 6px 13px;
-    border-radius: 0 5px 5px 0;
-    background: #256397;
+    padding: 6px 13px 6px 6px;
+    border-radius: 0 50% 50% 0;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000000;
+    border-left: 1px solid #fff !important;
 }
 
 .page-link {
@@ -1529,3 +1565,5 @@ section {
 .page-item.active .page-link {
     background-color: #438bca !important;
 }
+
+/* contact */

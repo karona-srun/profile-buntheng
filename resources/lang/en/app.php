@@ -53,5 +53,19 @@ return [
     'call_us' => 'Call Us',
     'copyright'=>'© Copyright Portfolio. All Rights Reserved.',
     'developer' => 'Developer by',
-    'credits' => ' Karona Srun.'
+    'credits' => ' Karona Srun.',
+    'city' => 'Phnom Penh City.',
+    'country' => 'Cambodia',
+    // Contact us page
+    'firstname' => 'First Name',
+    'lastname' => 'Last Name',
+    'email' => 'Email Address',
+    'phone' => 'Phone Number',
+    'company' => 'Company Name',
+    'purpose' => 'Purpose of Contact',
+    'message' => 'Message',
+    'write_message' => 'Write something...',
+    'purpose_example' => 'Example: Start a Project, General Inquiries, Questions, Salutation',
+    'submit' => 'Submit',
+    'flast_message' => 'Your contact has been sent successfully.'
 ];

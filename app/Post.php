@@ -39,6 +39,6 @@ class Post extends Model
 
     public function images($postId)
     {
-        return Attachment::where(['post_id' => $postId,'name'=>'posts'])->get(); 
+        return Attachment::where(['post_id' => $postId,'name'=>'posts'])->orderBy('size','desc')->get(); 
     }
 }

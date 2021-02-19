@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "Ondo-Bold";
+    src: url("{{ asset('fonts/english/Ondo-Bold.ttf') }}");
+    src: url("{{ asset('fonts/english/Ondo-Bold.ttf') }}") format("woff"),
+    url("{{ asset('fonts/english/Ondo-Bold.ttf') }}") format("opentype"),
+    url("{{ asset('fonts/english/Ondo-Bold.ttf') }}") format("svg");
+}
+
+@font-face {
+    font-family: "Ondo-Regular";
+    src: url("{{ asset('fonts/english/Ondo-Regular.ttf') }}");
+    src: url("{{ asset('fonts/english/Ondo-Regular.ttf') }}") format("woff"),
+    url("{{ asset('fonts/english/Ondo-Regular.ttf') }}") format("opentype"),
+    url("{{ asset('fonts/english/Ondo-Regular.ttf') }}") format("svg");
+}
+html body {
+    font-family: 'Ondo-Regular' !important;
+}
+
+label,
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Ondo-Regular' !important;
+}
+
+.form-control {
+    font-family: 'Ondo-Regular' !important;
+}
+.animate__animated .animate__fadeInDown{
+    font-family: 'Ondo-Regular' !important;
+}
+
+.section-title h2 {
+    font-family: 'Ondo-Bold' !important;
+}
+
+.section-title p {
+    font-family: 'Ondo-Regular' !important;
+    font-size: 16px !important;
+}
+
+.nav-menu a {
+    font-family: 'Ondo-Bold' !important;
+    font-size: 16px !important;
+}
+
+#portfolio-flters li {
+    font-family: 'Ondo-Regular' !important;
+    font-size: 14px !important;
+}
+
+.portfolio-info h4 {
+    font-family: 'Ondo-Regular' !important;
+}
+
+.portfolio-info p {
+    font-family: 'Ondo-Regular' !important;
+}
+
+.portfolio-description h4{
+    font-family: 'Ondo-Regular' !important;
+}
+
+.portfolio-description p {
+    font-family: 'Ondo-Regular' !important;
+}

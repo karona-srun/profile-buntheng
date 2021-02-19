@@ -199,6 +199,10 @@
                         <div class="form-group">
                             <label for="basicInput">Add New Images <button type="button" class="btn btn-primary"
                                     id="add_more">Add Image</button></label>
+                            <br>
+                            <label for="" class=" text-truncate">Big size 1140px x 700px</label><br>
+                            <label for="">Medium size 552px x 400px</label><br>
+                            <label for="">Small size 370px x 300px</label>
                             <hr>
                             <div class="row add-rows"></div>
                         </div>

@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Kantumruy";
+    src: url("../fonts/khmer/Kantumruy-Regular.ttf");
+    src: url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("woff"),
+        url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("opentype"),
+        url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("svg");
+}
+
+html body {
+    font-family: 'Kantumruy' !important;
+}
+label, h1, h2, h3, h4{
+    font-family: 'Kantumruy' !important;
+}
+
+.form-control{
+    font-family: 'Kantumruy' !important;
+}
+.animate__fadeInDown {
+    font-family: 'Kantumruy' !important;
+}
+
+.section-title h2{
+    font-family: 'Kantumruy' !important;
+}
+.section-title p{
+    font-family: 'Kantumruy' !important;
+    font-size: 16px !important;
+}
+
+.nav-menu a {
+    font-family: 'Kantumruy' !important;
+    font-size: 14px !important;
+}
+
+#portfolio-flters li {
+    font-family: 'Kantumruy' !important;
+    font-size: 16px !important;
+}
+.portfolio-info h4{
+    font-family: 'Kantumruy' !important;
+}
+.portfolio-info p {
+    font-family: 'Kantumruy' !important;
+}
+
+.portfolio-description h4 {
+    font-family: 'Kantumruy' !important;
+}
+
+.portfolio-description p {
+    font-family: 'Kantumruy' !important;
+}
+

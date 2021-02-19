@@ -70,6 +70,33 @@ class IndexController extends Controller
         }
     }
 
+    public function about(Type $var = null)
+    {
+        # code...
+        $slides = SlideImages::where('is_published',1)->get();
+        $posttype = PostType::where('is_published',1)->get();
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        return view('about',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
+    }
+
+    public function contact(Type $var = null)
+    {
+        # code...
+        $slides = SlideImages::where('is_published',1)->get();
+        $posttype = PostType::where('is_published',1)->get();
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        return view('contact',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
+    }
+
+    public function work(Type $var = null)
+    {
+        # code...
+        $slides = SlideImages::where('is_published',1)->get();
+        $posttype = PostType::where('is_published',1)->get();
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        return view('work',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
+    }
+
     public function search(Request $request)
     {
         $slides = SlideImages::where('is_published',1)->get();

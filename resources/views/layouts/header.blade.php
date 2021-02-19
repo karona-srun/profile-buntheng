@@ -1,4 +1,4 @@
-<section id="topbar" class="">
+{{-- <section id="topbar" class="">
     <div class="container clearfix">
         <div class="contact-info float-left">
             <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
@@ -17,14 +17,14 @@
             <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
         </div>
     </div>
-</section>
+</section> --}}
 
 <header id="header">
     <div class="container">
         <div class="logo float-left">
-            <h1 class="text-light"><a href="/"><span>{{ __('app.appName') }}</span></a></h1>
+            {{-- <h1 class="text-light"><a href="/"><span>{{ __('app.appName') }}</span></a></h1> --}}
             <!-- Uncomment below if you prefer to use an image logo -->
-            {{-- <a href="#"><img src="img/favicon.png" alt="" class="img-fluid"></a> --}}
+            <a href="{{ url('/')}}"><img src="{{ asset('logo_name.png') }}" alt="" class="img-fluid"></a>
         </div>
         
         <nav class="nav-menu float-right d-none d-lg-block">
@@ -41,10 +41,16 @@
                         </form>
                     </div>
                 </li>
-                <li class="active"><a href="#">{{ __('app.homePage') }}</a></li>
-                <li><a href="#about">{{ __('app.aboutPage') }}</a></li>
+                <li class="active"><a href="{{ url('/') }}">{{ __('app.homePage') }}</a></li>
                 <li><a href="#work">{{ __('app.portfolioPage') }}</a></li>
-                <li><a href="#contact">{{ __('app.contactPage') }}</a></li>
+                {{-- <li><a href="{{ url('about') }}">{{ __('app.aboutPage') }}</a></li> --}}
+                <li><a href="{{ url('contact') }}">{{ __('app.contactPage') }}</a></li>
+                <li>
+                    <a href="{{ Session::get('locale') == "kh" ? url('lang/en') : url('lang/kh') }}" class="twitter">
+                    <img src="https://www.worldometers.info/img/flags/{{ Session::get('locale') == "kh" ? 'cb' : 'us'}}-flag.gif" alt="" width="30px" height="20px" srcset="">
+                        <i class="icofont-direction-sign"></i> {{ Session::get('locale') == "kh" ? 'Khmer' : 'English'}}
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

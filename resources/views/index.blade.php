@@ -7,8 +7,8 @@
     <title>{{ config('app.name', 'Buntheng') }}</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="logo.jpg" rel="icon">
+    <link href="logo.jpg" rel="apple-touch-icon">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
         rel="stylesheet">
@@ -59,20 +59,11 @@
     <main id="main">
         @include('layouts.portfolioPage')
         <section id="contact" class="contact">
-            @include('layouts.contact')
+            {{-- @include('layouts.contact') --}}
         </section>
         </section>
     </main>
-    <footer id="footer">
-        <div class="container">
-            <div class="copyright">
-                {{ __('app.copyright')}}
-            </div>
-            <div class="credits">
-                {{ __('app.developer')}} <a href="https://facebook.com/karona.srun" target="_blink">{{ __('app.credits')}}</a>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
 
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 

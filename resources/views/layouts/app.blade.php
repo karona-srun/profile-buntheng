@@ -14,7 +14,12 @@
     <link rel="stylesheet" href="{{ asset('vendor_be/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor_be/vendors/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor_be/css/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('vendor_be/images/favicon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('logo.jpg') }}" type="image/x-icon">
+    @if(Session::get('locale') == "kh")
+        <link href="{{ asset('css/khmer.css') }}" rel="stylesheet">
+    @else
+        <link href="{{ asset('css/english.css') }}" rel="stylesheet">
+    @endif
 </head>
 
 <body>
@@ -22,7 +27,7 @@
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
-                    <img src="{{ asset('vendor_be/images/logo.svg') }}" alt="" srcset="">
+                    <img src="{{ asset('logo_name_black.png') }}" alt="" srcset="">
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
@@ -124,10 +129,13 @@
             <div class="main-content container-fluid">
                 @yield('content')
             </div>
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-left">
-                        <p>2020 &copy; Prortfolio</p>
+            <footer id="footer">
+                <div class="container">
+                    <div class="copyright">
+                        {{ __('app.copyright')}}
+                    </div>
+                    <div class="credits">
+                        {{ __('app.developer')}} <a href="https://facebook.com/karona.srun" target="_blink">{{ __('app.credits')}}</a>
                     </div>
                 </div>
             </footer>

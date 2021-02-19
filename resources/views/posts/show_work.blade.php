@@ -1,12 +1,12 @@
 @extends('layouts.app_front')
 @section('content')
-    <section class="breadcrumbs">
+    {{-- <section class="breadcrumbs">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>{{ __('app.portfolioPage') }}</h2>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section class="portfolio-details">
         <div class="container">
             <div class="portfolio-description">

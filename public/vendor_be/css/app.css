@@ -188,6 +188,8 @@ i {
 }
 
 footer {
+    bottom: 0;
+    position: absolute;
     padding: 1rem 1.5rem;
 }
 
@@ -1664,6 +1666,10 @@ footer {
 
 .ml-50 {
     margin-left: 0.5rem;
+}
+
+.ml-100 {
+    margin-left: 1rem;
 }
 
 .w-0 {

@@ -7,7 +7,7 @@
                 <div class="card pt-4">
                     <div class="card-body">
                         <div class="text-center mb-5">
-                            <img src="vendor_be/images/favicon.svg" height="48" class='mb-4'>
+                            <img src="{{ asset('logo.jpg')}}" height="48" class='mb-4'>
                             <h3>Sign In</h3>
                             <p>Please sign in to continue to Portfolio.</p>
                         </div>
