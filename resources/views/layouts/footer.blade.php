@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-4 ">
                 <div class="copyright text-center">
-                    <div>{{ __('app.city') }}</div>
+                    <div class="city">{{ __('app.city') }}</div>
                     <div class="country">{{ __('app.country') }}</diV>
                 </div>
                 <div class="credits text-center">
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 copyright text-center">
-                <p>thengchea97@gmail.com</p>
+                <p class="email">thengchea97@gmail.com</p>
                 <p class="telephone">(+855) 96 272 062</p>
                 
             </div>

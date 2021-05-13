@@ -2,28 +2,35 @@
     font-family: "Kantumruy";
     src: url("../fonts/khmer/Kantumruy-Regular.ttf");
     src: url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("woff"),
-        url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("opentype"),
-        url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("svg");
+    url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("opentype"),
+    url("{{ asset('fonts/khmer/Kantumruy-Regular.ttf') }}") format("svg");
 }
 
 html body {
     font-family: 'Kantumruy' !important;
 }
-label, h1, h2, h3, h4{
+
+label,
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Kantumruy' !important;
 }
 
-.form-control{
+.form-control {
     font-family: 'Kantumruy' !important;
 }
+
 .animate__fadeInDown {
     font-family: 'Kantumruy' !important;
 }
 
-.section-title h2{
+.section-title h2 {
     font-family: 'Kantumruy' !important;
 }
-.section-title p{
+
+.section-title p {
     font-family: 'Kantumruy' !important;
     font-size: 16px !important;
 }
@@ -37,9 +44,11 @@ label, h1, h2, h3, h4{
     font-family: 'Kantumruy' !important;
     font-size: 16px !important;
 }
-.portfolio-info h4{
+
+.portfolio-info h4 {
     font-family: 'Kantumruy' !important;
 }
+
 .portfolio-info p {
     font-family: 'Kantumruy' !important;
 }
@@ -52,3 +61,14 @@ label, h1, h2, h3, h4{
     font-family: 'Kantumruy' !important;
 }
 
+.country {
+    margin-left: 0px !important;
+}
+
+.city {
+    margin-left: -37px !important;
+}
+
+.email {
+    margin-left: -10px !important;
+}

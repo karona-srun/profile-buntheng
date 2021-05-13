@@ -13,6 +13,7 @@
     url("{{ asset('fonts/english/Ondo-Regular.ttf') }}") format("opentype"),
     url("{{ asset('fonts/english/Ondo-Regular.ttf') }}") format("svg");
 }
+
 html body {
     font-family: 'Ondo-Regular' !important;
 }
@@ -28,7 +29,8 @@ h4 {
 .form-control {
     font-family: 'Ondo-Regular' !important;
 }
-.animate__animated .animate__fadeInDown{
+
+.animate__animated .animate__fadeInDown {
     font-family: 'Ondo-Regular' !important;
 }
 
@@ -59,10 +61,14 @@ h4 {
     font-family: 'Ondo-Regular' !important;
 }
 
-.portfolio-description h4{
+.portfolio-description h4 {
     font-family: 'Ondo-Regular' !important;
 }
 
 .portfolio-description p {
     font-family: 'Ondo-Regular' !important;
+}
+
+.email {
+    margin-left: -10px !important;
 }

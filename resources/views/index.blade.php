@@ -20,6 +20,11 @@
     <link href="{{ asset('vendor/owl.carousel/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylefe.css') }}" rel="stylesheet">
+    @if(Session::get('locale') == "kh")
+        <link href="{{ asset('css/khmer.css') }}" rel="stylesheet">
+    @else
+        <link href="{{ asset('css/english.css') }}" rel="stylesheet">
+    @endif
 </head>
 
 <body>
