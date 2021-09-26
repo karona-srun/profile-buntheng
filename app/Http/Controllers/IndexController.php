@@ -16,7 +16,7 @@ class IndexController extends Controller
     {
         $slides = SlideImages::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(9);
         return view('index',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 
@@ -27,11 +27,12 @@ class IndexController extends Controller
      */
     public function details($id)
     {
+        
         $slides = SlideImages::where('is_published',1)->get();
         $posts = Post::find($id);
-        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);;
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(9);
         $posttype = PostType::where('is_published',1)->get();
-        return view('portfolio-details',['posttype' => $posttype,'post' => $post, 'posts' => $posts,'slides'=>$slides]);
+        return view('portfolio_details',['posttype' => $posttype,'post' => $post, 'posts' => $posts,'slides'=>$slides]);
     }
 
     /**
@@ -75,7 +76,7 @@ class IndexController extends Controller
         # code...
         $slides = SlideImages::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(9);
         return view('about',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 
@@ -84,7 +85,7 @@ class IndexController extends Controller
         # code...
         $slides = SlideImages::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(9);
         return view('contact',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 
@@ -93,7 +94,7 @@ class IndexController extends Controller
         # code...
         $slides = SlideImages::where('is_published',1)->get();
         $posttype = PostType::where('is_published',1)->get();
-        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(1);
+        $post = Post::where('is_published',1)->orderBy('created_at', 'DESC')->paginate(9);
         return view('work',['posttype' => $posttype,'post' => $post,'slides'=>$slides]);
     }
 

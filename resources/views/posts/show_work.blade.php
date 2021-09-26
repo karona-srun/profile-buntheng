@@ -1,5 +1,5 @@
 @extends('layouts.app_front')
-@section('content')
+@section('contentpost')
     {{-- <section class="breadcrumbs">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">

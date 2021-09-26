@@ -5,7 +5,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('vendor_be/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor_be/css/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('vendor_be/images/favicon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('logo.jpg') }}" type="image/x-icon">
 </head>
 <body>
     <div id="error">

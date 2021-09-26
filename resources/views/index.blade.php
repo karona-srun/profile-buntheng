@@ -7,8 +7,8 @@
     <title>{{ config('app.name', 'Buntheng') }}</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
-    <link href="logo.jpg" rel="icon">
-    <link href="logo.jpg" rel="apple-touch-icon">
+    <link href="{{ asset('logo.jpg') }}" rel="icon">
+    <link href="{{ asset('logo.jpg') }}" rel="apple-touch-icon">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
         rel="stylesheet">

@@ -29,6 +29,7 @@
 
 <body>
     @include('layouts.header')
+    @yield('contentpost')
     @yield('contact')
     @if(Route::currentRouteName() == 'contact')
     <section id="hero">
@@ -65,15 +66,15 @@
 
     <main id="main">
         <section id="services" class="services">
-            {{-- @include('layouts.services') --}}
-            @yield('content')
+            <!-- @include('layouts.services') -->
+            
         </section>
 
         @include('layouts.portfolioPage')
     </main>
     @endif
     @include('layouts.footer')
-
+    
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
     <!-- Vendor JS Files -->
