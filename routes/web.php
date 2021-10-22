@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +23,13 @@ Route::get('search','IndexController@search');
 Route::get('/send-mail', 'MailController@sendEmail');
 
 Route::get('lang/{locale}', 'LocalizationController@index');
-Auth::routes(['register' => true]);
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('posts-upload-image/{id}','PostController@getImage');
+Route::post('posts-upload-image','PostController@uploadImage');
+Route::delete('posts-delete-image/{id}', 'PostController@deleteImages');
 
 Route::resource('post-types','PostTypeController');
 Route::resource('posts','PostController');

@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             @foreach ($posts->images($posts->id) as $i => $item)
-                <img src="{{ Storage::url($item->path) }}" class="img-fluid mb-4" alt="">
+                <img src="{{ $item->path }}" class="img-fluid mb-4" alt="">
             @endforeach
         </div>
     </section>

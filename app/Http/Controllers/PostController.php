@@ -8,6 +8,7 @@ use App\PostType;
 use App\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Image;
 
 class PostController extends Controller
@@ -29,7 +30,7 @@ class PostController extends Controller
     public function index()
     {
         $collection = Post::get();
-        return view('posts.index',['collection' => $collection]);
+        return view('posts.index', ['collection' => $collection]);
     }
 
     /**
@@ -39,8 +40,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $postype = PostType::where('is_published',1)->get();
-        return view('posts.create',['postype'=>$postype]);
+        $postype = PostType::where('is_published', 1)->get();
+        return view('posts.create', ['postype' => $postype]);
     }
 
     /**
@@ -60,18 +61,16 @@ class PostController extends Controller
             'status' => 'required',
             'thumbnail'  =>  'required',
             'thumbnail.*' => 'mimes:jpg,jpeg,png,gif',
-            'filenames' => 'required',
-            'filenames.*' => 'mimes:jpg,jpeg,png,gif',
-        ]);    
+        ]);
 
-        $message=$request->content_en;
+        $message = $request->content_en;
 
         $dom = new \DomDocument();
-        $dom->loadHtml('<?xml encoding="UTF-8">'.$message);   
+        $dom->loadHtml('<?xml encoding="UTF-8">' . $message);
         $images = $dom->getElementsByTagName('img');
 
-        foreach($images as $img){
-            $src = $img->getAttribute('src');            
+        foreach ($images as $img) {
+            $src = $img->getAttribute('src');
             // if the img source is 'data-url'
             if (preg_match("'/data:image/'", $src)) {
                 preg_match("'/data:image\/(?<mime>.*?)\;/'", $src, $groups);
@@ -85,13 +84,13 @@ class PostController extends Controller
         $body_en = $dom->saveHTML();
 
 
-        $message_kh=$request->content_kh;
+        $message_kh = $request->content_kh;
         $dom_kh = new \DomDocument();
-        $dom_kh->loadHtml('<?xml encoding="UTF-8">'.$message_kh);   
+        $dom_kh->loadHtml('<?xml encoding="UTF-8">' . $message_kh);
         $images_kh = $dom_kh->getElementsByTagName('img');
 
-        foreach($images_kh as $img){
-            $src = $img->getAttribute('src');            
+        foreach ($images_kh as $img) {
+            $src = $img->getAttribute('src');
             // if the img source is 'data-url'
             if (preg_match("'/data:image/'", $src)) {
                 preg_match("'/data:image\/(?<mime>.*?)\;/'", $src, $groups);
@@ -104,7 +103,7 @@ class PostController extends Controller
         }
 
         $body_kh = $dom_kh->saveHTML();
-        
+
         $post = Post::create([
             'post_type_id' => $request->post_type,
             'thumbnail' => '',
@@ -117,41 +116,23 @@ class PostController extends Controller
             'created_by' => Auth::User()->id,
             'updated_by' => Auth::User()->id,
         ]);
-        
-        if($imageFiles = $request->file('thumbnail')){
-                $name = $imageFiles->getClientOriginalName();
-                $mimetype = number_format($imageFiles->getSize()/1048576,3).' MB'; 
-                $path = $imageFiles->storeAs('public/thumbnails', $name);
-                if($path) {
-                    $save   =   Attachment::create([
+
+        if ($imageFiles = $request->file('thumbnail')) {
+            $name = time() . '_' . preg_replace('/[^A-Za-z0-9\-\(\).]/', '', $imageFiles->getClientOriginalName());
+            $mimetype = number_format($imageFiles->getSize() / 1048576, 3) . ' MB';
+            $path = $imageFiles->storeAs('public/thumbnails', $name);
+            if ($path) {
+                $save   =   Attachment::create([
                     'post_id' => $post->id,
                     'name' => 'thumbnails',
                     'path' => $path,
                     'size' => $mimetype
-                    ]);
-                }
+                ]);
             }
-
-        if($request->hasfile('filenames'))
-         {
-            foreach($request->file('filenames') as $file)
-            {
-                $name = $file->getClientOriginalName();
-                $mimetype = number_format($file->getSize()/1048576,3).' MB'; 
-                $path = $file->storeAs('public/posts', $name);
-                if($path) {
-                    $save   =   Attachment::create([
-                    'post_id' => $post->id,
-                    'name' => 'posts',
-                    'path' => $path,
-                    'size' => $mimetype
-                    ]);
-                }
-            }
-         }
+        }
 
         return redirect()->route('posts.index')
-                        ->with('success','Post has been created successfully.');
+            ->with('success', 'Post has been created successfully.');
     }
 
     /**
@@ -163,9 +144,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post = Post::find($post->id);
-        $attachemnts = Attachment::where('post_id',$post->id)->get();
+        $attachemnts = Attachment::where('post_id', $post->id)->get();
         $postype = PostType::get();
-        return view('posts.show',['post' => $post,'attachemnts' => $attachemnts, 'postype' => $postype]);
+        return view('posts.show', ['post' => $post, 'attachemnts' => $attachemnts, 'postype' => $postype]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -176,8 +157,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $post = Post::find($post->id);
-        $collection = PostType::where('is_public',1)->get();
-        return view('posts.edit',['post' => $post,'collection' => $collection]);
+        $collection = PostType::where('is_public', 1)->get();
+        return view('posts.edit', ['post' => $post, 'collection' => $collection]);
     }
 
     /**
@@ -188,14 +169,15 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {$message=$request->content_en;
+    {
+        $message = $request->content_en;
 
         $dom = new \DomDocument();
-        $dom->loadHtml('<?xml encoding="UTF-8">'.$message);   
+        $dom->loadHtml('<?xml encoding="UTF-8">' . $message);
         $images = $dom->getElementsByTagName('img');
 
-        foreach($images as $img){
-            $src = $img->getAttribute('src');            
+        foreach ($images as $img) {
+            $src = $img->getAttribute('src');
             // if the img source is 'data-url'
             if (preg_match("'/data:image/'", $src)) {
                 preg_match("'/data:image\/(?<mime>.*?)\;/'", $src, $groups);
@@ -209,13 +191,13 @@ class PostController extends Controller
         $body_en = $dom->saveHTML();
 
 
-        $message_kh=$request->content_kh;
+        $message_kh = $request->content_kh;
         $dom_kh = new \DomDocument();
-        $dom_kh->loadHtml('<?xml encoding="UTF-8">'.$message_kh);   
+        $dom_kh->loadHtml('<?xml encoding="UTF-8">' . $message_kh);
         $images_kh = $dom_kh->getElementsByTagName('img');
 
-        foreach($images_kh as $img){
-            $src = $img->getAttribute('src');            
+        foreach ($images_kh as $img) {
+            $src = $img->getAttribute('src');
             // if the img source is 'data-url'
             if (preg_match("'/data:image/'", $src)) {
                 preg_match("'/data:image\/(?<mime>.*?)\;/'", $src, $groups);
@@ -228,7 +210,7 @@ class PostController extends Controller
         }
 
         $body_kh = $dom_kh->saveHTML();
-        
+
 
         $post = Post::find($id);
         $post->post_type_id = $request->postType;
@@ -241,29 +223,27 @@ class PostController extends Controller
         $post->updated_by = Auth::User()->id;
         $post->save();
 
-        $attachemnts = Attachment::where(['name'=>'thumbnails','post_id'=> $id])->first();
-        if($imageFiles = $request->file('thumbnail')){
-                $name = $imageFiles->getClientOriginalName();
-                $mimetype = number_format($imageFiles->getSize()/1048576,3).' MB'; 
-                $path = $imageFiles->storeAs('public/thumbnails', $name);
-                if($attachemnts->path){
-                    $this->deleteFile($attachemnts->path);
-                }
-                    Attachment::create([
-                    'post_id' => $post->id,
-                    'name' => 'thumbnails',
-                    'path' => $path,
-                    'size' => $mimetype
-                    ]);
+        $attachemnts = Attachment::where(['name' => 'thumbnails', 'post_id' => $id])->first();
+        if ($imageFiles = $request->file('thumbnail')) {
+            $name = time() . '_' . preg_replace('/[^A-Za-z0-9\-\(\).]/', '', $imageFiles->getClientOriginalName());
+            $mimetype = number_format($imageFiles->getSize() / 1048576, 3) . ' MB';
+            $path = $imageFiles->storeAs('public/thumbnails', $name);
+            if ($attachemnts->path) {
+                $this->deleteFile($attachemnts->path);
             }
+            Attachment::create([
+                'post_id' => $post->id,
+                'name' => 'thumbnails',
+                'path' => $path,
+                'size' => $mimetype
+            ]);
+        }
 
-        $attachemnts = Attachment::where(['name' => 'posts','post_id' => $id])->get();
-        if($request->hasfile('filenames'))
-         {
-            foreach($request->file('filenames') as $file)
-            {
+        $attachemnts = Attachment::where(['name' => 'posts', 'post_id' => $id])->get();
+        if ($request->hasfile('filenames')) {
+            foreach ($request->file('filenames') as $file) {
                 $name = $file->getClientOriginalName();
-                $mimetype = number_format($file->getSize()/1048576,3).' MB'; 
+                $mimetype = number_format($file->getSize() / 1048576, 3) . ' MB';
                 $path = $file->storeAs('public/posts', $name);
                 Attachment::create([
                     'post_id' => $post->id,
@@ -272,10 +252,48 @@ class PostController extends Controller
                     'size' => $mimetype
                 ]);
             }
-         }
-        
+        }
+
         return redirect()->route('posts.index')
-                        ->with('success','Post has been created successfully.');
+            ->with('success', 'Post has been created successfully.');
+    }
+
+    public function getImage($id)
+    {
+        $post = Attachment::where(['name' => 'posts', 'post_id' => $id])->get();
+        return view('posts.upload_image', ['post' => $post, 'id' => $id]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        if ($request->hasfile('filename')) {
+            foreach ($request->file('filename') as $file) {
+                $name = time() . '_' . preg_replace('/[^A-Za-z0-9\-\(\).]/', '', $file->getClientOriginalName());
+                time() . '_' . preg_replace('/[^A-Za-z0-9\-\(\).]/', '', $file->getClientOriginalName());
+                $mimetype = number_format($file->getSize() / 1048576, 3) . ' MB';
+                $path = $file->storeAs('posts', $name, 'public');
+                if ($path) {
+                    $save   =   Attachment::create([
+                        'post_id' => $request->post_id,
+                        'name' => 'posts',
+                        'path' => '/storage/' . $path,
+                        'size' => $mimetype
+                    ]);
+                }
+            }
+        }
+        return redirect()->action([PostController::class, 'getImage'], $request->post_id);
+    }
+
+    public function deleteImages($id)
+    {
+        $attachment = Attachment::find($id);
+        if ($attachment->delete()) {
+            File::delete(public_path($attachment->path));
+        }
+        return response()->json([
+            'success' => 'Image deleted successfully!'
+        ]);
     }
 
     /**
@@ -288,15 +306,16 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        $attachments = Attachment::where(['name' => 'posts','post_id' => $id])->get();
-        foreach($attachments AS $item){
-            Storage::delete($item->path); 
+        $attachments = Attachment::where(['name' => 'posts', 'post_id' => $id])->get();
+        foreach ($attachments as $item) {
+            Storage::delete($item->path);
             $item->delete();
         }
         return redirect('/posts')->with('error', 'Post has been deleted successfully!');
     }
 
-    public function deleteImage($id){
+    public function deleteImage($id)
+    {
         $attachemnt = Attachment::find($id);
         $this->deleteFile($attachemnt->path);
         $attachemnt->delete();
@@ -310,11 +329,12 @@ class PostController extends Controller
      * @param [type] $path
      * @return void
      */
-    public function deleteFile($path){
-        if(Storage::exists($path)){
-            try{
+    public function deleteFile($path)
+    {
+        if (Storage::exists($path)) {
+            try {
                 Storage::delete($path);
-            }catch(\Exception $e){
+            } catch (\Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
         }

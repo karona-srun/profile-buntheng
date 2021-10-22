@@ -65,6 +65,8 @@
                                                 <i class="bx bx-error-circle mr-50"></i> Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonIcon">
+                                                <a class="dropdown-item" href="{{ url('/posts-upload-image/'.$item->id) }}"><i
+                                                    data-feather="image"></i> Upload Image</a>
                                                 <a class="dropdown-item" href="{{ route('posts.show', $item->id) }}"><i
                                                         data-feather="folder-minus"></i> View</a>
                                                 <a class="dropdown-item" target="blink" href="{{ url('posts/show-work', $item->id) }}"><i

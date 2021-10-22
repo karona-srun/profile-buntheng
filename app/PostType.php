@@ -14,7 +14,7 @@ class PostType extends Model
 
     protected $table = 'post_types';
 
-    protected $fillable = ['post_type_en','post_type_kh','description_en','description_kh','is_public','created_by','updated_by'];
+    protected $fillable = ['post_type_en','post_type_kh','description_en','description_kh','is_published','created_by','updated_by'];
 
     public function creator()
     {

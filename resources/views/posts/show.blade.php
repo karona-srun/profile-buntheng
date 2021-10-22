@@ -210,7 +210,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="basicInput">Add New Images <button type="button" class="btn btn-primary"
                                     id="add_more">Add Image</button></label>
                             <hr>
@@ -233,7 +233,7 @@
                                 @endforeach
                             </div>
                           
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
             </div>

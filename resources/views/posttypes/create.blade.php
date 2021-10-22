@@ -70,7 +70,7 @@
                                     <div class="form-group">
                                         <select class="choices form-select status" id="status" name="status">
                                             <option value="0">Draft</option>
-                                            <option value="1">Published</option>
+                                            <option value="1" selected>Published</option>
                                         </select>
                                     </div>
                                 </div>
